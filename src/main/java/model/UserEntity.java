@@ -11,7 +11,6 @@ public class UserEntity {
     private int id;
     private String username;
     private String password;
-    private String check;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -63,15 +62,5 @@ public class UserEntity {
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
-    }
-
-    @Basic
-    @Column(name = "check", nullable = true, length = 45)
-    public String getCheck() {
-        return check;
-    }
-
-    public void setCheck(String check) {
-        this.check = check;
     }
 }
