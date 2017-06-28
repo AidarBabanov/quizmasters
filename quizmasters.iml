@@ -10,6 +10,9 @@
     </facet>
     <facet type="ejb" name="EJB">
       <configuration>
+        <descriptors>
+          <deploymentDescriptor name="ejb-jar.xml" url="file://$MODULE_DIR$/META-INF/ejb-jar.xml" />
+        </descriptors>
         <ejbRoots>
           <root url="file://$MODULE_DIR$/src/main/java" />
         </ejbRoots>
@@ -32,7 +35,8 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="hibernate.cfg.xml" value="d01ace39-3ac6-45b9-93d1-0051a53bb498" />
+          <unit-entry name="a.xml" value="816f8393-31f2-4b15-91dd-e4f96ab11fa2" />
+          <unit-entry name="hibernate.cfg.xml" value="816f8393-31f2-4b15-91dd-e4f96ab11fa2" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.cfg.xml" />
@@ -44,7 +48,7 @@
         <setting name="provider-name" value="" />
         <datasource-mapping>
           <factory-entry name="NewPersistenceUnit" />
-          <factory-entry name="QuizMastersPU" />
+          <factory-entry name="QuizMastersPU" value="816f8393-31f2-4b15-91dd-e4f96ab11fa2" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>
@@ -69,8 +73,13 @@
     <orderEntry type="library" name="Hibernate 5.2.10-5.2.10" level="project" />
     <orderEntry type="library" name="JPA 2.0-2.0" level="project" />
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="PrimeFaces-5.2" level="project" />
+    <orderEntry type="library" name="JBoss Weld-2.0.3" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.jboss.spec.javax.ejb:jboss-ejb-api_3.2_spec:1.0.0.Final" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.persistence:javax.persistence:2.0.0" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.42" level="project" />
+    <orderEntry type="library" name="Maven: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.faces:jsf-api:2.1.7" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.faces:jsf-impl:2.1.7" level="project" />
   </component>
 </module>

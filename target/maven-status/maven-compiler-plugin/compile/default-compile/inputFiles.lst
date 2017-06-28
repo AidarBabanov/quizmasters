@@ -1,3 +1,12 @@
-D:\workspace\quizmasters\src\main\java\cdi\IndexCDI.java
-D:\workspace\quizmasters\src\main\java\model\UserEntity.java
-D:\workspace\quizmasters\src\main\java\ejb\IndexEJB.java
+/home/user/Desktop/Aidar Babanov/workspace/quizmasters/src/main/java/model/QuizEntity.java
+/home/user/Desktop/Aidar Babanov/workspace/quizmasters/src/main/java/model/QuizPropertyEntity.java
+/home/user/Desktop/Aidar Babanov/workspace/quizmasters/src/main/java/model/UserEntity.java
+/home/user/Desktop/Aidar Babanov/workspace/quizmasters/src/main/java/model/QuestionTypeEntity.java
+/home/user/Desktop/Aidar Babanov/workspace/quizmasters/src/main/java/cdi/IndexCDI.java
+/home/user/Desktop/Aidar Babanov/workspace/quizmasters/src/main/java/model/AnswerMultChoiceEntity.java
+/home/user/Desktop/Aidar Babanov/workspace/quizmasters/src/main/java/ejb/IndexEJB.java
+/home/user/Desktop/Aidar Babanov/workspace/quizmasters/src/main/java/model/QuizPropertyTypeEntity.java
+/home/user/Desktop/Aidar Babanov/workspace/quizmasters/src/main/java/model/QuizPropertyEntityPK.java
+/home/user/Desktop/Aidar Babanov/workspace/quizmasters/src/main/java/model/AnswerMultChoiceEntityPK.java
+/home/user/Desktop/Aidar Babanov/workspace/quizmasters/src/main/java/model/PropertyTimeToAnswerEntity.java
+/home/user/Desktop/Aidar Babanov/workspace/quizmasters/src/main/java/model/QuestionEntity.java

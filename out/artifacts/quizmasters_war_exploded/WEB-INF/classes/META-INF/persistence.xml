@@ -3,10 +3,26 @@
 
     <persistence-unit name="QuizMastersPU">
         <jta-data-source>java:/QuizMastersDS</jta-data-source>
+        <class>model.AnswerMultChoiceEntity</class>
+        <class>model.PropertyTimeToAnswerEntity</class>
+        <class>model.QuestionEntity</class>
+        <class>model.QuestionTypeEntity</class>
+        <class>model.QuizEntity</class>
+        <class>model.QuizPropertyEntity</class>
+        <class>model.QuizPropertyTypeEntity</class>
+        <class>model.UserEntity</class>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="hibernate.show_sql" value="false" />
             <property name="hibernate.format_sql" value="false" />
+            <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/quizmasters"/>
+            <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/quizmasters"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306/quizmasters"/>
+            <property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver"/>
+            <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/quizmasters"/>
+            <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
         </properties>
     </persistence-unit>
 </persistence>

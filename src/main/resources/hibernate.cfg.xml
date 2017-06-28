@@ -6,7 +6,15 @@
   <session-factory>
     <property name="connection.url">jdbc:mysql://localhost:3306/quizmasters</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-    <mapping class="model.UserEntity"/>
+      <mapping class="model.UserEntity"/>
+      <mapping class="ejb.AnswerMultChoiceEntity"/>
+      <mapping class="ejb.PropertyTimeToAnswerEntity"/>
+      <mapping class="ejb.QuestionEntity"/>
+      <mapping class="ejb.QuestionTypeEntity"/>
+      <mapping class="ejb.QuizEntity"/>
+      <mapping class="ejb.QuizPropertyEntity"/>
+      <mapping class="ejb.QuizPropertyTypeEntity"/>
+      <mapping class="ejb.UserEntity"/>
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

@@ -22,7 +22,6 @@ public class IndexCDI implements Serializable {
 
     public String getUser() {
         String s = indexEJB.getUser(id);
-        System.out.println("Test CDI");
         return s;
     }
 

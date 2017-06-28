@@ -1,5 +1,7 @@
 package ejb;
 
+import model.UserEntity;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +17,6 @@ public class IndexEJB {
 
     public String getUser(int id){
         UserEntity userEntity = entityManager.find(UserEntity.class, id);
-        System.out.println("Test EJB");
-        return userEntity.getUsername();
+        return userEntity.getEmail();
     }
 }

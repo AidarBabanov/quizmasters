@@ -1,0 +1,12 @@
+ejb/IndexEJB.class
+model/QuestionTypeEntity.class
+model/QuizPropertyTypeEntity.class
+model/AnswerMultChoiceEntityPK.class
+model/QuizEntity.class
+model/QuizPropertyEntityPK.class
+model/QuizPropertyEntity.class
+model/AnswerMultChoiceEntity.class
+model/PropertyTimeToAnswerEntity.class
+cdi/IndexCDI.class
+model/QuestionEntity.class
+model/UserEntity.class
