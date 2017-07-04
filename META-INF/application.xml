@@ -11,6 +11,6 @@
         </web>
     </module>
     <module id="quizmasters-EJB">
-        <ejb>ejb.jar</ejb>
+        <ejb>DAO.jar</ejb>
     </module>
 </application>

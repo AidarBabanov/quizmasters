@@ -1,6 +1,7 @@
 package cdi;
 
-import ejb.IndexEJB;
+import db.DAOImpl.UserDAOImpl;
+import db.model.User;
 
 import javax.ejb.EJB;
 import javax.faces.bean.SessionScoped;
@@ -14,15 +15,13 @@ import java.io.Serializable;
 @SessionScoped
 public class IndexCDI implements Serializable {
 
-    private int id = 1;
-    private String username;
-
     @EJB
-    private IndexEJB indexEJB;
+    private UserDAOImpl indexEJB;
 
     public String getUser() {
-        String s = indexEJB.getUser(id);
-        return s;
+        User user = indexEJB.getUserByEmail("aidar.babanov@nu.edu.kz");
+        if(user==null)return "";
+        else return user.getEmail();
     }
 
 }

@@ -3,14 +3,14 @@
 
     <persistence-unit name="QuizMastersPU">
         <jta-data-source>java:/QuizMastersDS</jta-data-source>
-        <class>model.AnswerMultChoiceEntity</class>
-        <class>model.PropertyTimeToAnswerEntity</class>
-        <class>model.QuestionEntity</class>
-        <class>model.QuestionTypeEntity</class>
-        <class>model.QuizEntity</class>
-        <class>model.QuizPropertyEntity</class>
-        <class>model.QuizPropertyTypeEntity</class>
-        <class>model.UserEntity</class>
+        <class>db.model.AnswerMultChoice</class>
+        <class>db.model.PropertyTimeToAnswer</class>
+        <class>db.model.QuestionEntity</class>
+        <class>db.model.QuestionType</class>
+        <class>db.model.Quiz</class>
+        <class>db.model.QuizProperty</class>
+        <class>db.model.QuizPropertyType</class>
+        <class>db.model.User</class>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="hibernate.show_sql" value="false" />
