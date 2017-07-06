@@ -20,35 +20,35 @@ public class DAOFactory {
     @PersistenceContext(name = "QuizMastersPU")
     EntityManager entityManager;
 
-    public UserDAO getUserDAO(){
+    public UserDAO getUserDAO() {
         return new UserDAOImpl(entityManager);
     }
 
-    public AnswerMultChoiceDAO getAnswerMultChoiceDAO(){
+    public AnswerMultChoiceDAO getAnswerMultChoiceDAO() {
         return new AnswerMultChoiceDAOImpl(entityManager);
     }
 
-    public PropertyTimeToAnswerDAO getPropertyTimeToAnswerDAODAO(){
+    public PropertyTimeToAnswerDAO getPropertyTimeToAnswerDAODAO() {
         return new PropertyTimeToAnswerDAOImpl(entityManager);
     }
 
-    public QuestionDAO getQuestionDAO(){
+    public QuestionDAO getQuestionDAO() {
         return new QuestionDAOImpl(entityManager);
     }
 
-    public QuestionTypeDAO getQuestionTypeDAO(){
+    public QuestionTypeDAO getQuestionTypeDAO() {
         return new QuestionTypeDAOImpl(entityManager);
     }
 
-    public QuizDAO getQuizDAO(){
+    public QuizDAO getQuizDAO() {
         return new QuizDAOImpl(entityManager);
     }
 
-    public QuizPropertyDAO getQuizPropertyDAO(){
+    public QuizPropertyDAO getQuizPropertyDAO() {
         return new QuizPropertyDAOImpl(entityManager);
     }
 
-    public QuizPropertyTypeDAO getQuizPropertyTypeDAO(){
+    public QuizPropertyTypeDAO getQuizPropertyTypeDAO() {
         return new QuizPropertyTypeDAOImpl(entityManager);
     }
 
