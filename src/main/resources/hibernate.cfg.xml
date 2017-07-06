@@ -6,7 +6,7 @@
   <session-factory>
     <property name="connection.url">jdbc:mysql://localhost:3306/quizmasters</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-      <mapping class="db.model.User"/>
+      <mapping class="kz.codemasters.quizmasters.model.User"/>
       <mapping class="DAO.AnswerMultChoiceEntity"/>
       <mapping class="DAO.PropertyTimeToAnswerEntity"/>
       <mapping class="DAO.QuestionEntity"/>
