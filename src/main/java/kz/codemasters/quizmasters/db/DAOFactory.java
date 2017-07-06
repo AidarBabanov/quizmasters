@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
  * Created by aidar on 7/6/17.
  */
 @Startup
-@Singleton
+//@Singleton
 @Stateless
 public class DAOFactory {
 
