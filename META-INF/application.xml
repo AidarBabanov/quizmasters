@@ -6,11 +6,11 @@
 
     <module id="quizmasters-Web">
         <web>
-            <web-uri>web.war</web-uri>
+            <web-uri>quizmasters.war</web-uri>
             <context-root>quizmastersWeb</context-root>
         </web>
     </module>
     <module id="quizmasters-EJB">
-        <ejb>ejb.jar</ejb>
+        <ejb>quizmasters.jar</ejb>
     </module>
 </application>

@@ -12,13 +12,13 @@ import javax.persistence.PersistenceContext;
 /**
  * Created by aidar on 7/6/17.
  */
-@Startup
+//@Startup
 //@Singleton
 @Stateless
 public class DAOFactory {
 
     @PersistenceContext(name = "QuizMastersPU")
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     public UserDAO getUserDAO() {
         return new UserDAOImpl(entityManager);

@@ -21,9 +21,6 @@ public class UserDAOImpl implements UserDAO {
         this.entityManager = entityManager;
     }
 
-    public UserDAOImpl() {
-    }
-
     public List<User> getAllUsers() {
         String queryStr = "SELECT u FROM User u";
         Query query = entityManager.createQuery(queryStr, User.class);
