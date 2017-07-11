@@ -19,7 +19,7 @@ public class IndexCDI implements Serializable {
 
     @EJB
     private DAOFactory daoFactory;
-
+    //hello gittest
     private UserDAO userDAO;
 
     public String getUser() {
