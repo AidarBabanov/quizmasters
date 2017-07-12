@@ -1,4 +1,4 @@
-package kz.codemasters.quizmasters.db.DAO;
+package kz.codemasters.quizmasters.repository.interfaces;
 
 import kz.codemasters.quizmasters.model.Quiz;
 
@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by aidar on 7/4/17.
  */
-public interface QuizDAO {
+public interface QuizRepository {
 
     public List<Quiz> getAllQuizzes();
 

@@ -1,6 +1,6 @@
-package kz.codemasters.quizmasters.db.DAOImpl;
+package kz.codemasters.quizmasters.repository.implementations;
 
-import kz.codemasters.quizmasters.db.DAO.QuizDAO;
+import kz.codemasters.quizmasters.repository.interfaces.QuizRepository;
 import kz.codemasters.quizmasters.model.Quiz;
 
 import javax.persistence.EntityManager;
@@ -10,11 +10,11 @@ import java.util.List;
 /**
  * Created by aidar on 7/5/17.
  */
-public class QuizDAOImpl implements QuizDAO {
+public class QuizRepositoryImpl implements QuizRepository {
 
     private EntityManager entityManager;
 
-    public QuizDAOImpl(EntityManager entityManager) {
+    public QuizRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

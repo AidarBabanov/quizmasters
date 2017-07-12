@@ -1,4 +1,4 @@
-package kz.codemasters.quizmasters.db.DAO;
+package kz.codemasters.quizmasters.repository.interfaces;
 
 import kz.codemasters.quizmasters.model.QuizPropertyType;
 
@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by aidar on 7/5/17.
  */
-public interface QuizPropertyTypeDAO {
+public interface QuizPropertyTypeRepository {
     public List<QuizPropertyType> getAllQuizPropertyTypes();
 
     public QuizPropertyType getQuizPropertyTypeById(int id);

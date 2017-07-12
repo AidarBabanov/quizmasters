@@ -1,6 +1,6 @@
-package kz.codemasters.quizmasters.db.DAOImpl;
+package kz.codemasters.quizmasters.repository.implementations;
 
-import kz.codemasters.quizmasters.db.DAO.QuizPropertyTypeDAO;
+import kz.codemasters.quizmasters.repository.interfaces.QuizPropertyTypeRepository;
 import kz.codemasters.quizmasters.model.QuizPropertyType;
 
 import javax.persistence.EntityManager;
@@ -10,11 +10,11 @@ import java.util.List;
 /**
  * Created by aidar on 7/6/17.
  */
-public class QuizPropertyTypeDAOImpl implements QuizPropertyTypeDAO {
+public class QuizPropertyTypeRepositoryImpl implements QuizPropertyTypeRepository {
 
     EntityManager entityManager;
 
-    public QuizPropertyTypeDAOImpl(EntityManager entityManager){
+    public QuizPropertyTypeRepositoryImpl(EntityManager entityManager){
         this.entityManager = entityManager;
     }
 

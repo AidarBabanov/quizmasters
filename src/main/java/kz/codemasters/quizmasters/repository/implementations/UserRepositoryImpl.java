@@ -1,11 +1,9 @@
-package kz.codemasters.quizmasters.db.DAOImpl;
+package kz.codemasters.quizmasters.repository.implementations;
 
-import kz.codemasters.quizmasters.db.DAO.UserDAO;
+import kz.codemasters.quizmasters.repository.interfaces.UserRepositroy;
 import kz.codemasters.quizmasters.model.User;
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
@@ -13,11 +11,11 @@ import java.util.List;
  * Created by Alexandr on 20.06.2017.
  */
 
-public class UserDAOImpl implements UserDAO {
+public class UserRepositoryImpl implements UserRepositroy {
 
     private EntityManager entityManager;
 
-    public UserDAOImpl(EntityManager entityManager) {
+    public UserRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

@@ -1,4 +1,4 @@
-package kz.codemasters.quizmasters.db.DAO;
+package kz.codemasters.quizmasters.repository.interfaces;
 
 import kz.codemasters.quizmasters.model.QuestionType;
 
@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by aidar on 7/5/17.
  */
-public interface QuestionTypeDAO {
+public interface QuestionTypeRepository {
     public List<QuestionType> getAllQuestionTypes();
 
     public QuestionType getQuestionTypeById(int id);
