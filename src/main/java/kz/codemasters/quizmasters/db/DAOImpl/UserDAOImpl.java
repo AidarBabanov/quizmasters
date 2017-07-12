@@ -5,6 +5,7 @@ import kz.codemasters.quizmasters.model.User;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
@@ -37,7 +38,12 @@ public class UserDAOImpl implements UserDAO {
         String queryStr = "SELECT u FROM User u WHERE u.email =:email";
         Query query = entityManager.createQuery(queryStr, User.class)
                 .setParameter("email", email);
-        User user = (User) query.getSingleResult();
+        User user = null;
+        try{
+            user = (User) query.getSingleResult();
+        }catch (NoResultException e){
+            System.out.println("No Results");
+        }
         return user;
     }
 
@@ -67,6 +73,4 @@ public class UserDAOImpl implements UserDAO {
             return false;
         }
     }
-
-
 }
