@@ -1,7 +1,7 @@
-package kz.codemasters.quizmasters.db.DAOImpl;
+package kz.codemasters.quizmasters.repository.implementations;
 
 
-import kz.codemasters.quizmasters.db.DAO.AnswerMultChoiceDAO;
+import kz.codemasters.quizmasters.repository.interfaces.AnswerMultChoiceRepository;
 import kz.codemasters.quizmasters.model.AnswerMultChoice;
 import kz.codemasters.quizmasters.model.AnswerMultChoicePK;
 
@@ -12,11 +12,11 @@ import java.util.List;
 /**
  * Created by aidar on 7/6/17.
  */
-public class AnswerMultChoiceDAOImpl implements AnswerMultChoiceDAO {
+public class AnswerMultChoiceRepositoryImpl implements AnswerMultChoiceRepository {
 
     EntityManager entityManager;
 
-    public AnswerMultChoiceDAOImpl(EntityManager entityManager){
+    public AnswerMultChoiceRepositoryImpl(EntityManager entityManager){
         this.entityManager = entityManager;
     }
 

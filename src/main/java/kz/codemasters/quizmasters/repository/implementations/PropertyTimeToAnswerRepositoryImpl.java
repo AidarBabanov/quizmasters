@@ -1,6 +1,6 @@
-package kz.codemasters.quizmasters.db.DAOImpl;
+package kz.codemasters.quizmasters.repository.implementations;
 
-import kz.codemasters.quizmasters.db.DAO.PropertyTimeToAnswerDAO;
+import kz.codemasters.quizmasters.repository.interfaces.PropertyTimeToAnswerRepository;
 import kz.codemasters.quizmasters.model.PropertyTimeToAnswer;
 
 import javax.persistence.EntityManager;
@@ -10,10 +10,10 @@ import java.util.List;
 /**
  * Created by aidar on 7/6/17.
  */
-public class PropertyTimeToAnswerDAOImpl implements PropertyTimeToAnswerDAO {
+public class PropertyTimeToAnswerRepositoryImpl implements PropertyTimeToAnswerRepository {
 
     EntityManager entityManager;
-    public PropertyTimeToAnswerDAOImpl(EntityManager entityManager){
+    public PropertyTimeToAnswerRepositoryImpl(EntityManager entityManager){
         this.entityManager = entityManager;
     }
 
