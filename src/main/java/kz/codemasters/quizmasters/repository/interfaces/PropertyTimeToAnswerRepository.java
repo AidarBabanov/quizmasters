@@ -8,13 +8,11 @@ import java.util.List;
  * Created by aidar on 7/6/17.
  */
 public interface PropertyTimeToAnswerRepository {
-    public List<PropertyTimeToAnswer> getAllPropertyTimeToAnswers();
+    List<PropertyTimeToAnswer> getAllPropertyTimeToAnswers();
 
-    public PropertyTimeToAnswer getPropertyTimeToAnswerById(int id);
+    PropertyTimeToAnswer getPropertyTimeToAnswerById(int id);
 
-    public boolean insertPropertyTimeToAnswer(PropertyTimeToAnswer propertyTimeToAnswer);
+    boolean mergePropertyTimeToAnswer(PropertyTimeToAnswer propertyTimeToAnswer);
 
-    public boolean updatePropertyTimeToAnswer(PropertyTimeToAnswer propertyTimeToAnswer);
-
-    public boolean removePropertyTimeToAnswer(PropertyTimeToAnswer propertyTimeToAnswer);
+    boolean removePropertyTimeToAnswer(PropertyTimeToAnswer propertyTimeToAnswer);
 }

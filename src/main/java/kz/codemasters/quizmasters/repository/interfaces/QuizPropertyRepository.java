@@ -8,15 +8,13 @@ import java.util.List;
  * Created by aidar on 7/5/17.
  */
 public interface QuizPropertyRepository {
-    public List<QuizProperty> getAllQuizProperties();
+    List<QuizProperty> getAllQuizProperties();
 
-    public List<QuizProperty> getAllQuizQuizProperties(int quizId);
+    List<QuizProperty> getAllQuizQuizProperties(int quizId);
 
-    public QuizProperty getQuizPropertyByCompositeKey(int quizId, int quizPropertyTypeId);
+    QuizProperty getQuizPropertyByCompositeKey(int quizId, int quizPropertyTypeId);
 
-    public boolean insertQuizProperty(QuizProperty quizProperty);
+    boolean mergeQuizProperty(QuizProperty quizProperty);
 
-    public boolean updateQuizProperty(QuizProperty quizProperty);
-
-    public boolean removeQuizProperty(QuizProperty quizProperty);
+    boolean removeQuizProperty(QuizProperty quizProperty);
 }

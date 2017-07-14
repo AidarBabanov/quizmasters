@@ -9,15 +9,13 @@ import java.util.List;
  */
 public interface QuizRepository {
 
-    public List<Quiz> getAllQuizzes();
+    List<Quiz> getAllQuizzes();
 
-    public List<Quiz> getAllUserQuizzes(int userId);
+    List<Quiz> getAllUserQuizzes(int userId);
 
-    public Quiz getQuizById(int id);
+    Quiz getQuizById(int id);
 
-    public boolean insertQuiz(Quiz quiz);
+    boolean mergeQuiz(Quiz quiz);
 
-    public boolean updateQuiz(Quiz quiz);
-
-    public boolean removeQuiz(Quiz quiz);
+    boolean removeQuiz(Quiz quiz);
 }

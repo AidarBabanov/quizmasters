@@ -2,28 +2,27 @@ package kz.codemasters.quizmasters.cdi;
 /**
  * Created by serikzhilibayev on 12.07.17.
  */
-import kz.codemasters.quizmasters.db.DAO.UserDAO;
-import kz.codemasters.quizmasters.db.DAOFactory;
 import kz.codemasters.quizmasters.model.User;
+import kz.codemasters.quizmasters.repository.interfaces.UserRepository;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 
-@ManagedBean(name = "rpb")
-@SessionScoped
-public class registrationPageBean {
-    String fname;
-    String lname;
-    String password1;
-    String password2;
+@ManagedBean (name = "spb")
+@RequestScoped
+public class SignUpPageBean {
+    private String fname;
+    private String lname;
+    private String password1;
+    private String password2;
+    private String email;
+
     @EJB
-    private DAOFactory daoFactory;
-
-    private UserDAO userDAO;
+    private UserRepository userRepository;
 
     public String getPassword1() {
         return password1;
@@ -41,8 +40,6 @@ public class registrationPageBean {
         this.password2 = password2;
     }
 
-    String email;
-
     public String getFname() {
         return fname;
     }
@@ -59,7 +56,6 @@ public class registrationPageBean {
         this.lname = lname;
     }
 
-
     public String getEmail() {
         return email;
     }
@@ -70,10 +66,13 @@ public class registrationPageBean {
 
 
     public void save() {
-        userDAO = daoFactory.getUserDAO();
-        if (userDAO.getUserByEmail(email) == null){
-
-            userDAO.updateUser(new User());
+        if (userRepository.getUserByEmail(email) == null){
+            User user = new User();
+            user.setEmail(getEmail());
+            user.setFirstname(getFname());
+            user.setLastname(getLname());
+            user.setPassword(getPassword1());
+            userRepository.mergeUser(user);
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Registered!"));
         }else{

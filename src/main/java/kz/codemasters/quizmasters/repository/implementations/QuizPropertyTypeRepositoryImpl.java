@@ -3,43 +3,38 @@ package kz.codemasters.quizmasters.repository.implementations;
 import kz.codemasters.quizmasters.repository.interfaces.QuizPropertyTypeRepository;
 import kz.codemasters.quizmasters.model.QuizPropertyType;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
 /**
  * Created by aidar on 7/6/17.
  */
+@Stateless
 public class QuizPropertyTypeRepositoryImpl implements QuizPropertyTypeRepository {
 
+    @PersistenceContext(name = "QuizMastersPU")
     EntityManager entityManager;
-
-    public QuizPropertyTypeRepositoryImpl(EntityManager entityManager){
-        this.entityManager = entityManager;
-    }
 
     public List<QuizPropertyType> getAllQuizPropertyTypes() {
         String queryStr = "SELECT q FROM QuizPropertyType q";
         Query query = entityManager.createQuery(queryStr, QuizPropertyType.class);
-        List<QuizPropertyType> quizPropertyTypeList = query.getResultList();
-        return quizPropertyTypeList;
+        return query.getResultList();
     }
 
     public QuizPropertyType getQuizPropertyTypeById(int id) {
-        QuizPropertyType quizPropertyType = entityManager.find(QuizPropertyType.class, id);
-        return quizPropertyType;
-    }
-
-    public boolean insertQuizPropertyType(QuizPropertyType quizPropertyType) {
         try {
-            entityManager.persist(quizPropertyType);
-            return true;
-        } catch (Exception e) {
-            return false;
+            return entityManager.find(QuizPropertyType.class, id);
+        }catch (NoResultException e){
+            return null;
         }
+
     }
 
-    public boolean updateQuizPropertyType(QuizPropertyType quizPropertyType) {
+    public boolean mergeQuizPropertyType(QuizPropertyType quizPropertyType) {
         try {
             entityManager.merge(quizPropertyType);
             return true;

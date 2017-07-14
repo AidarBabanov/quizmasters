@@ -8,15 +8,13 @@ import java.util.List;
  * Created by aidar on 7/5/17.
  */
 public interface QuestionRepository {
-    public List<Question> getAllQuestions();
+    List<Question> getAllQuestions();
 
-    public List<Question> getAllQuizQuistions(int quizId);
+    List<Question> getAllQuizQuistions(int quizId);
 
-    public Question getQuestionById(int id);
+    Question getQuestionById(int id);
 
-    public boolean insertQuestion(Question question);
+    boolean mergeQuestion(Question question);
 
-    public boolean updateQuestion(Question question);
-
-    public boolean removeQuestion(Question question);
+    boolean removeQuestion(Question question);
 }

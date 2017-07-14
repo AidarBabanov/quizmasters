@@ -4,6 +4,8 @@ import kz.codemasters.quizmasters.repository.interfaces.QuestionRepository;
 import kz.codemasters.quizmasters.model.Question;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
@@ -12,6 +14,7 @@ import java.util.List;
  */
 public class QuestionRepositoryImpl implements QuestionRepository {
 
+    @PersistenceContext(name = "QuizMastersPU")
     private EntityManager entityManager;
 
     public QuestionRepositoryImpl(EntityManager entityManager) {
@@ -21,33 +24,26 @@ public class QuestionRepositoryImpl implements QuestionRepository {
     public List<Question> getAllQuestions() {
         String queryStr = "SELECT q FROM Question q";
         Query query = entityManager.createQuery(queryStr, Question.class);
-        List<Question> questionsList = query.getResultList();
-        return questionsList;
+        return query.getResultList();
     }
 
     public List<Question> getAllQuizQuistions(int quizId) {
         String queryStr = "SELECT q FROM Question q WHERE q.quizId = :quizId";
         Query query = entityManager.createQuery(queryStr, Question.class)
                 .setParameter("quizId", quizId);
-        List<Question> questionList = query.getResultList();
-        return questionList;
+        return query.getResultList();
     }
 
     public Question getQuestionById(int id) {
         Question question = entityManager.find(Question.class, id);
-        return question;
-    }
-
-    public boolean insertQuestion(Question question) {
         try {
-            entityManager.persist(question);
-            return true;
-        } catch (Exception e) {
-            return false;
+            return question;
+        } catch (NoResultException e) {
+            return null;
         }
     }
 
-    public boolean updateQuestion(Question question) {
+    public boolean mergeQuestion(Question question) {
         try {
             entityManager.merge(question);
             return true;

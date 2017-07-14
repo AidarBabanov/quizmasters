@@ -1,7 +1,6 @@
 package kz.codemasters.quizmasters.cdi;
 
-import kz.codemasters.quizmasters.repository.interfaces.UserRepositroy;
-import kz.codemasters.quizmasters.repository.RepositoryFactory;
+import kz.codemasters.quizmasters.repository.interfaces.UserRepository;
 import kz.codemasters.quizmasters.model.User;
 
 import javax.ejb.EJB;
@@ -18,13 +17,10 @@ import java.io.Serializable;
 public class IndexCDI implements Serializable {
 
     @EJB
-    private RepositoryFactory repositoryFactory;
-    //hello gittest
-    private UserRepositroy userRepositroy;
+    private UserRepository userRepository;
 
     public String getUser() {
-        userRepositroy = repositoryFactory.getUserRepository();
-        User user = userRepositroy.getUserByEmail("aidar.babanov@nu.edu.kz");
+        User user = userRepository.getUserByEmail(".babanov@nu.edu.kz");
         if(user==null)return "";
         else return user.getEmail();
     }

@@ -3,42 +3,38 @@ package kz.codemasters.quizmasters.repository.implementations;
 import kz.codemasters.quizmasters.repository.interfaces.QuestionTypeRepository;
 import kz.codemasters.quizmasters.model.QuestionType;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
 /**
  * Created by aidar on 7/6/17.
  */
+@Stateless
 public class QuestionTypeRepositoryImpl implements QuestionTypeRepository {
 
+    @PersistenceContext(name = "QuizMastersPU")
     EntityManager entityManager;
-    public QuestionTypeRepositoryImpl(EntityManager entityManager){
-        this.entityManager = entityManager;
-    }
 
     public List<QuestionType> getAllQuestionTypes() {
         String queryStr = "SELECT q FROM QuestionType q";
         Query query = entityManager.createQuery(queryStr, QuestionType.class);
-        List<QuestionType> questionTypeList = query.getResultList();
-        return questionTypeList;
+        return query.getResultList();
     }
 
     public QuestionType getQuestionTypeById(int id) {
-        QuestionType QuestionType = entityManager.find(QuestionType.class, id);
-        return QuestionType;
-    }
-
-    public boolean insertQuestionType(QuestionType questionType) {
         try {
-            entityManager.persist(questionType);
-            return true;
-        } catch (Exception e) {
-            return false;
+            return entityManager.find(QuestionType.class, id);
+        } catch (NoResultException e) {
+            return null;
         }
+
     }
 
-    public boolean updateQuestionType(QuestionType questionType) {
+    public boolean mergeQuestionType(QuestionType questionType) {
         try {
             entityManager.merge(questionType);
             return true;

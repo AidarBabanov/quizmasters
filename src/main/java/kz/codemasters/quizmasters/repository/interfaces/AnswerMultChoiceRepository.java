@@ -9,15 +9,13 @@ import java.util.List;
  */
 public interface AnswerMultChoiceRepository {
 
-    public List<AnswerMultChoice> getAllAnswerMultChoices();
+    List<AnswerMultChoice> getAllAnswerMultChoices();
 
-    public List<AnswerMultChoice> getAllQuestionAnswerMultChoices(int questionId);
+    List<AnswerMultChoice> getAllQuestionAnswerMultChoices(int questionId);
 
-    public AnswerMultChoice getAnswerMultChoiceByCompositeKey(int questionId, int position);
+    AnswerMultChoice getAnswerMultChoiceByCompositeKey(int questionId, int position);
 
-    public boolean insertAnswerMultChoice(AnswerMultChoice answerMultChoice);
+    boolean mergeAnswerMultChoice(AnswerMultChoice answerMultChoice);
 
-    public boolean updateAnswerMultChoice(AnswerMultChoice answerMultChoice);
-
-    public boolean removeAnswerMultChoice(AnswerMultChoice answerMultChoice);
+    boolean removeAnswerMultChoice(AnswerMultChoice answerMultChoice);
 }

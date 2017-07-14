@@ -4,25 +4,26 @@ import kz.codemasters.quizmasters.repository.interfaces.QuizPropertyRepository;
 import kz.codemasters.quizmasters.model.QuizProperty;
 import kz.codemasters.quizmasters.model.QuizPropertyPK;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
 /**
  * Created by aidar on 7/6/17.
  */
+@Stateless
 public class QuizPropertyRepositoryImpl implements QuizPropertyRepository {
 
+    @PersistenceContext(name = "QuizMastersPU")
     EntityManager entityManager;
-    public QuizPropertyRepositoryImpl(EntityManager entityManager){
-        this.entityManager = entityManager;
-    }
 
     public List<QuizProperty> getAllQuizProperties() {
         String queryStr = "SELECT a FROM QuizProperty a";
         Query query = entityManager.createQuery(queryStr, QuizProperty.class);
-        List<QuizProperty> quizPropertyList = query.getResultList();
-        return quizPropertyList;
+        return query.getResultList();
     }
 
     public List<QuizProperty> getAllQuizQuizProperties(int quizId) {
@@ -38,20 +39,14 @@ public class QuizPropertyRepositoryImpl implements QuizPropertyRepository {
         quizPropertyPK.setQuizId(quizId);
         quizPropertyPK.setQuizPropertyTypeId(quizPropertyTypeId);
         QuizProperty quizProperty = entityManager.find(QuizProperty.class, quizPropertyPK);
-        return quizProperty;
-    }
-
-
-    public boolean insertQuizProperty(QuizProperty quizProperty) {
-        try {
-            entityManager.persist(quizProperty);
-            return true;
-        } catch (Exception e) {
-            return false;
+        try{
+            return quizProperty;
+        }catch (NoResultException e){
+            return null;
         }
     }
 
-    public boolean updateQuizProperty(QuizProperty quizProperty) {
+    public boolean mergeQuizProperty(QuizProperty quizProperty) {
         try {
             entityManager.merge(quizProperty);
             return true;
