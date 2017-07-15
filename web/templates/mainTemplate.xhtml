@@ -12,29 +12,112 @@
         <title><ui:insert name="title">Demo Web</ui:insert></title>
     </f:facet>
     <f:facet name="middle">
-        <h:outputStylesheet name="css/default.css"/>
         <h:outputStylesheet name="css/bootstrap.css"/>
+        <h:outputStylesheet name="css/registerpage.css"/>
     </f:facet>
     <f:facet name="last">
+        <h:outputScript name="js/jquery-3.2.1.min.js"/>
         <h:outputScript name="js/default.js"/>
         <h:outputScript name="js/bootstrap.js"/>
     </f:facet>
+
+    <style type="text/css">
+        body{
+            background: url("#{resource['patterns/1pattern.png']}") repeat;
+        }
+        h1{
+            color: #f2f2f2;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .rect{
+            width:360px;
+            padding: 8% 0 0;
+            margin: auto;
+            display: none;
+        }
+        .rect2{
+            width:360px;
+            padding: 8% 0 0;
+            margin: auto;
+        }
+        .cont{
+            position: relative;
+            z-index: 1;
+            background: rgba(0,0,0,0.67);
+            max-width: 360px;
+            margin: 0 auto 100px;
+            padding: 45px;
+            padding-bottom: 60px;
+            text-align: center;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+            border-radius: 4px;
+        }
+        .cont input{
+            font-family: "Roboto", sans-serif;
+            outline: 0;
+            background: #f2f2f2;
+            width: 100%;
+            border: 0;
+            margin: 0 0 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .cont button {
+            font-family: "Roboto", sans-serif;
+            text-transform: uppercase;
+            outline: 0;
+            background: #2A8282;
+            width: 100%;
+            border: 0;
+            padding: 15px;
+            color: #f2f2f2;
+            font-size: 14px;
+            -webkit-transition: all 0.3 ease;
+            transition: all 0.3 ease;
+            cursor: pointer;
+        }
+        .cont button:hover,.cont button:active,.cont button:focus {
+            background: #2A8288;
+        }
+        .cont a{
+            position: relative;
+            float: left;
+            color: #f2f2f2;
+            margin-top: 5px;
+            padding-left: 3px;
+        }
+
+        .ui-password-panel{
+            border-radius: 4px;
+            margin-left: 5px;
+            background: rgba(242,242,242,0.8)!important;
+        }
+        .ui-growl-item{
+            background: rgba(242,242,242,0.8)!important;
+            border-radius: 4px;
+        }
+        span.ui-growl-image.ui-growl-image-error {
+            background: url("#{resource['image/error-flat.png']}") no-repeat;
+            background-size: contain;
+        }
+        span.ui-growl-image.ui-growl-image-info {
+            background: url("#{resource['image/success.png']}") no-repeat;
+            background-size: contain;
+        }
+    </style>
+
 </h:head>
 
 <h:body>
-    <div class="container">
+
         <ui:insert name="header">
-            <div class="page-header">
-                <h1>HEADER</h1>
-            </div>
         </ui:insert>
         <ui:insert name="content"><h1>Content</h1></ui:insert>
         <ui:insert name="footer">
-            <blockquote>
-                <h1>Footer</h1><br/><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-            </blockquote>
         </ui:insert>
-    </div>
+
 </h:body>
 
 </html>

@@ -6,25 +6,59 @@
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 >
     <ui:define name="title">Registration Page</ui:define>
-
     <ui:define name="content">
-        <h:form>
-            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-            <p:inputText placeholder="Email" value="#{spb.email}" required="true"/>
-            <br/>
-            <p:inputText placeholder="First Name" value="#{spb.fname}" required="true"/>
-            <br/>
-            <p:inputText placeholder="Last Name" value="#{spb.lname}" required="true"/>
-            <p:spacer height="10" />
-            <p:separator />
-            <h:panelGrid columns="2" id="matchGrid" cellpadding="5">
-                <p:password id="pwd1" placeholder="Password" value="#{spb.password1}" match="pwd2" required="true" feedback="true"/>
-                <br/>
-                <p:password id="pwd2" placeholder="Repeat" value="#{spb.password2}" required="true"/>
-            </h:panelGrid>
-            <br/>
-            <p:commandButton actionListener="#{spb.save}" update="messages" value="Submit"/>
-        </h:form>
+
+        <p:growl id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+
+        <h:panelGroup layout="block" styleClass = "rect">
+                        <h:form styleClass="cont">
+                            <h1>Sign up</h1>
+                            <p:inputText label="Email" placeholder="Email" value="#{spb.email}" required="true" styleClass="form-control"/>
+
+                            <p:inputText label="First name" placeholder="First name" value="#{spb.fname}" required="true" styleClass="form-control"/>
+
+                            <p:inputText label="Last name" placeholder="Last name" value="#{spb.lname}" required="true" styleClass="form-control"/>
+
+                            <p:password id="pwd1" label="Password" placeholder="Password" value="#{spb.password1}" match="pwd2" required="true" feedback="true" styleClass="form-control"/>
+
+                            <p:password id="pwd2" label="Repeat" placeholder="Repeat" value="#{spb.password2}" required="true" styleClass="form-control" />
+
+                            <p:commandButton actionListener="#{spb.save}" label="" update="messages" value="Submit" styleClass ="btn btn-primary"/>
+                            <br/>
+                            <a class="state" href="">Sign in</a>
+                        </h:form>
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass = "rect2">
+                        <h:form styleClass="cont">
+                            <h1>Sign in</h1>
+                            <p:inputText label="Email" placeholder="Email" value="#{spb.email}" required="true" styleClass="form-control"/>
+
+                            <p:password id="pwd1" label="Password" placeholder="Password" value="#{spb.password1}"  required="true" styleClass="form-control"/>
+
+                            <p:commandButton actionListener="#{spb.save}" label="" update="messages" value="Let me in" styleClass ="btn btn-primary"/>
+                            <br/>
+                            <a class="state" href="">Create an account</a>
+                        </h:form>
+        </h:panelGroup>
+        <script type="text/javascript">
+            var i = 0;
+            console.log('hello');
+                    $('a').click(function(event){
+                        console.log(i);
+                        if (i % 2 === 0) {
+                            $('.rect2').animate({display: "none", opacity: "toggle"}, "slow");
+                            $('.rect').animate({display: "block", opacity: "toggle"}, "slow");
+                            i++;
+                        }else {
+                            $('.rect').animate({display: "none", opacity: "toggle"}, "slow");
+                            $('.rect2').animate({display: "block", opacity: "toggle"}, "slow");
+                            i++;
+                        }
+                        event.preventDefault();
+                    });
+
+        </script>
 
     </ui:define>
 
