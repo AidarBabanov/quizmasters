@@ -4,10 +4,7 @@ import kz.codemasters.quizmasters.repository.interfaces.PropertyTimeToAnswerRepo
 import kz.codemasters.quizmasters.model.PropertyTimeToAnswer;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -34,11 +31,22 @@ public class PropertyTimeToAnswerRepositoryImpl implements PropertyTimeToAnswerR
 
     }
 
-    public boolean mergePropertyTimeToAnswer(PropertyTimeToAnswer propertyTimeToAnswer) {
+    public boolean insertPropertyTimeToAnswer(PropertyTimeToAnswer propertyTimeToAnswer) {
+        try {
+            entityManager.persist(propertyTimeToAnswer);
+            return true;
+        } catch (PersistenceException e) {
+
+            return false;
+        }
+    }
+
+    public boolean updatePropertyTimeToAnswer(PropertyTimeToAnswer propertyTimeToAnswer) {
         try {
             entityManager.merge(propertyTimeToAnswer);
             return true;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
+
             return false;
         }
     }
@@ -47,7 +55,8 @@ public class PropertyTimeToAnswerRepositoryImpl implements PropertyTimeToAnswerR
         try {
             entityManager.remove(propertyTimeToAnswer);
             return true;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
+
             return false;
         }
     }

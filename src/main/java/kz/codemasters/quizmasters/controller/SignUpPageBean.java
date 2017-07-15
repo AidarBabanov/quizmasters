@@ -1,4 +1,4 @@
-package kz.codemasters.quizmasters.cdi;
+package kz.codemasters.quizmasters.controller;
 /**
  * Created by serikzhilibayev on 12.07.17.
  */
@@ -9,7 +9,6 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 @ManagedBean (name = "spb")
@@ -72,7 +71,7 @@ public class SignUpPageBean {
             user.setFirstname(getFname());
             user.setLastname(getLname());
             user.setPassword(getPassword1());
-            userRepository.mergeUser(user);
+            userRepository.updateUser(user);
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Registered!"));
         }else{

@@ -15,7 +15,9 @@ public interface AnswerMultChoiceRepository {
 
     AnswerMultChoice getAnswerMultChoiceByCompositeKey(int questionId, int position);
 
-    boolean mergeAnswerMultChoice(AnswerMultChoice answerMultChoice);
+    boolean insertAnswerMultChoice(AnswerMultChoice answerMultChoice);
+
+    boolean updateAnswerMultChoice(AnswerMultChoice answerMultChoice);
 
     boolean removeAnswerMultChoice(AnswerMultChoice answerMultChoice);
 }

@@ -12,7 +12,9 @@ public interface PropertyTimeToAnswerRepository {
 
     PropertyTimeToAnswer getPropertyTimeToAnswerById(int id);
 
-    boolean mergePropertyTimeToAnswer(PropertyTimeToAnswer propertyTimeToAnswer);
+    boolean insertPropertyTimeToAnswer(PropertyTimeToAnswer propertyTimeToAnswer);
+
+    boolean updatePropertyTimeToAnswer(PropertyTimeToAnswer propertyTimeToAnswer);
 
     boolean removePropertyTimeToAnswer(PropertyTimeToAnswer propertyTimeToAnswer);
 }

@@ -15,7 +15,9 @@ public interface QuizRepository {
 
     Quiz getQuizById(int id);
 
-    boolean mergeQuiz(Quiz quiz);
+    boolean insertQuiz(Quiz quiz);
+
+    boolean updateQuiz(Quiz quiz);
 
     boolean removeQuiz(Quiz quiz);
 }

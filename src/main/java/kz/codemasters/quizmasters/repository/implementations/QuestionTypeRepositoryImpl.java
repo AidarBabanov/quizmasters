@@ -4,10 +4,7 @@ import kz.codemasters.quizmasters.repository.interfaces.QuestionTypeRepository;
 import kz.codemasters.quizmasters.model.QuestionType;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -34,11 +31,20 @@ public class QuestionTypeRepositoryImpl implements QuestionTypeRepository {
 
     }
 
-    public boolean mergeQuestionType(QuestionType questionType) {
+    public boolean insertQuestionType(QuestionType questionType) {
+        try {
+            entityManager.persist(questionType);
+            return true;
+        } catch (PersistenceException e) {
+            return false;
+        }
+    }
+
+    public boolean updateQuestionType(QuestionType questionType) {
         try {
             entityManager.merge(questionType);
             return true;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             return false;
         }
     }
@@ -47,7 +53,7 @@ public class QuestionTypeRepositoryImpl implements QuestionTypeRepository {
         try {
             entityManager.remove(questionType);
             return true;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             return false;
         }
     }

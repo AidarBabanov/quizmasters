@@ -10,20 +10,20 @@
     <ui:define name="content">
         <h:form>
             <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-            <p:inputText placeholder="Email" value="#{spb.email}" required="true"/>
+            <p:inputText placeholder="Email" value="#{userController.user.email}" required="true"/>
             <br/>
-            <p:inputText placeholder="First Name" value="#{spb.fname}" required="true"/>
+            <p:inputText placeholder="First Name" value="#{userController.user.firstname}" required="true"/>
             <br/>
-            <p:inputText placeholder="Last Name" value="#{spb.lname}" required="true"/>
+            <p:inputText placeholder="Last Name" value="#{userController.user.lastname}" required="true"/>
             <p:spacer height="10" />
             <p:separator />
             <h:panelGrid columns="2" id="matchGrid" cellpadding="5">
-                <p:password id="pwd1" placeholder="Password" value="#{spb.password1}" match="pwd2" required="true" feedback="true"/>
+                <p:password id="pwd1" placeholder="Password" value="#{userController.user.password}" match="pwd2" required="true" feedback="true"/>
                 <br/>
-                <p:password id="pwd2" placeholder="Repeat" value="#{spb.password2}" required="true"/>
+                <p:password id="pwd2" placeholder="Repeat" value="#{userController.regPassword2}" required="true"/>
             </h:panelGrid>
             <br/>
-            <p:commandButton actionListener="#{spb.save}" update="messages" value="Submit"/>
+            <p:commandButton actionListener="#{userController.signUp()}" update="messages" value="Submit"/>
         </h:form>
 
     </ui:define>

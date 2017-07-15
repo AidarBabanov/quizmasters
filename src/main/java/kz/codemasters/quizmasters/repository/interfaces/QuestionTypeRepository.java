@@ -12,7 +12,9 @@ public interface QuestionTypeRepository {
 
     QuestionType getQuestionTypeById(int id);
 
-    boolean mergeQuestionType(QuestionType questionType);
+    boolean insertQuestionType(QuestionType questionType);
+
+    boolean updateQuestionType(QuestionType questionType);
 
     boolean removeQuestionType(QuestionType questionType);
 }
