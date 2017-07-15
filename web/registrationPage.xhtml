@@ -13,17 +13,23 @@
         <h:panelGroup layout="block" styleClass = "rect">
                         <h:form styleClass="cont">
                             <h1>Sign up</h1>
-                            <p:inputText label="Email" placeholder="Email" value="#{spb.email}" required="true" styleClass="form-control"/>
+                            <p:inputText label="Email" placeholder="Email" value="#{SUC
+                            .email}" required="true" styleClass="form-control"/>
 
-                            <p:inputText label="First name" placeholder="First name" value="#{spb.fname}" required="true" styleClass="form-control"/>
+                            <p:inputText label="First name" placeholder="First name" value="#{SUC
+                            .fname}" required="true" styleClass="form-control"/>
 
-                            <p:inputText label="Last name" placeholder="Last name" value="#{spb.lname}" required="true" styleClass="form-control"/>
+                            <p:inputText label="Last name" placeholder="Last name" value="#{SUC
+                            .lname}" required="true" styleClass="form-control"/>
 
-                            <p:password id="pwd1" label="Password" placeholder="Password" value="#{spb.password1}" match="pwd2" required="true" feedback="true" styleClass="form-control"/>
+                            <p:password id="pwd1" label="Password" placeholder="Password" value="#{SUC
+                            .password1}" match="pwd2" required="true" feedback="true" styleClass="form-control"/>
 
-                            <p:password id="pwd2" label="Repeat" placeholder="Repeat" value="#{spb.password2}" required="true" styleClass="form-control" />
+                            <p:password id="pwd2" label="Repeat" placeholder="Repeat" value="#{SUC
+                            .password2}" required="true" styleClass="form-control" />
 
-                            <p:commandButton actionListener="#{spb.save}" label="" update="messages" value="Submit" styleClass ="btn btn-primary"/>
+                            <p:commandButton actionListener="#{SUC
+                            .save}" label="" update="messages" value="Submit" styleClass ="btn btn-primary"/>
                             <br/>
                             <a class="state" href="">Sign in</a>
                         </h:form>
@@ -32,11 +38,14 @@
         <h:panelGroup layout="block" styleClass = "rect2">
                         <h:form styleClass="cont">
                             <h1>Sign in</h1>
-                            <p:inputText label="Email" placeholder="Email" value="#{spb.email}" required="true" styleClass="form-control"/>
+                            <p:inputText label="Email" placeholder="Email" value="#{SUC
+                            .email}" required="true" styleClass="form-control"/>
 
-                            <p:password id="pwd1" label="Password" placeholder="Password" value="#{spb.password1}"  required="true" styleClass="form-control"/>
+                            <p:password id="pwd1" label="Password" placeholder="Password" value="#{SUC
+                            .password1}"  required="true" styleClass="form-control"/>
 
-                            <p:commandButton actionListener="#{spb.save}" label="" update="messages" value="Let me in" styleClass ="btn btn-primary"/>
+                            <p:commandButton actionListener="#{SUC
+                            .save}" label="" update="messages" value="Let me in" styleClass ="btn btn-primary"/>
                             <br/>
                             <a class="state" href="">Create an account</a>
                         </h:form>

@@ -2,6 +2,8 @@ package kz.codemasters.quizmasters.controller;
 /**
  * Created by serikzhilibayev on 12.07.17.
  */
+
+import kz.codemasters.quizmasters.StringsValidator;
 import kz.codemasters.quizmasters.model.User;
 import kz.codemasters.quizmasters.repository.interfaces.UserRepository;
 
@@ -10,15 +12,18 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 
-@ManagedBean (name = "spb")
+@ManagedBean(name = "SUC")
 @RequestScoped
-public class SignUpPageBean {
+public class SignUpController {
     private String fname;
     private String lname;
     private String password1;
     private String password2;
     private String email;
+    @Inject
+    private StringsValidator stringsValidator;
 
     @EJB
     private UserRepository userRepository;
@@ -63,20 +68,29 @@ public class SignUpPageBean {
         this.email = email;
     }
 
-
     public void save() {
-        if (userRepository.getUserByEmail(email) == null){
-            User user = new User();
-            user.setEmail(getEmail());
-            user.setFirstname(getFname());
-            user.setLastname(getLname());
-            user.setPassword(getPassword1());
+        User user = new User();
+        user.setEmail(email);
+        user.setFirstname(fname);
+        user.setLastname(lname);
+        user.setPassword(password1);
+        if (!userValidation(user)) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Please Try Again...", "User not validated!"));
+        } else if (userRepository.getUserByEmail(email) == null) {
             userRepository.updateUser(user);
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Registered!"));
-        }else{
+        } else {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Please Try Again...", "Already Registered!"));
         }
+    }
+
+    public boolean userValidation(User user) {
+        return stringsValidator.validateEmail(user.getEmail()) &&
+                stringsValidator.validateName(user.getFirstname()) &&
+                stringsValidator.validateName(user.getLastname()) &&
+                stringsValidator.validatePassword(user.getPassword());
     }
 }
