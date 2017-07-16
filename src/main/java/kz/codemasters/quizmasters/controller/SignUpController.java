@@ -68,7 +68,7 @@ public class SignUpController {
         this.email = email;
     }
 
-    public void save() {
+    public void signUp() {
         User user = new User();
         user.setEmail(email);
         user.setFirstname(fname);
