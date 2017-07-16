@@ -5,10 +5,7 @@ import kz.codemasters.quizmasters.model.QuizProperty;
 import kz.codemasters.quizmasters.model.QuizPropertyPK;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -46,11 +43,20 @@ public class QuizPropertyRepositoryImpl implements QuizPropertyRepository {
         }
     }
 
-    public boolean mergeQuizProperty(QuizProperty quizProperty) {
+    public boolean insertQuizProperty(QuizProperty quizProperty) {
+        try {
+            entityManager.persist(quizProperty);
+            return true;
+        } catch (PersistenceException e) {
+            return false;
+        }
+    }
+
+    public boolean updateQuizProperty(QuizProperty quizProperty) {
         try {
             entityManager.merge(quizProperty);
             return true;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             return false;
         }
     }
@@ -59,7 +65,7 @@ public class QuizPropertyRepositoryImpl implements QuizPropertyRepository {
         try {
             entityManager.remove(quizProperty);
             return true;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             return false;
         }
     }

@@ -3,10 +3,7 @@ package kz.codemasters.quizmasters.repository.implementations;
 import kz.codemasters.quizmasters.repository.interfaces.QuestionRepository;
 import kz.codemasters.quizmasters.model.Question;
 
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -43,11 +40,20 @@ public class QuestionRepositoryImpl implements QuestionRepository {
         }
     }
 
-    public boolean mergeQuestion(Question question) {
+    public boolean insertQuestion(Question question) {
+        try {
+            entityManager.persist(question);
+            return true;
+        } catch (PersistenceException e) {
+            return false;
+        }
+    }
+
+    public boolean updateQuestion(Question question) {
         try {
             entityManager.merge(question);
             return true;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             return false;
         }
     }
@@ -56,7 +62,7 @@ public class QuestionRepositoryImpl implements QuestionRepository {
         try {
             entityManager.remove(question);
             return true;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             return false;
         }
     }

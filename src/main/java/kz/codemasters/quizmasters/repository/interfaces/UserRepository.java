@@ -15,7 +15,9 @@ public interface UserRepository {
 
     User getUserByEmail(String email);
 
-    boolean mergeUser(User user);
+    boolean insertUser(User user);
+
+    boolean updateUser(User user);
 
     boolean removeUser(User user);
 }

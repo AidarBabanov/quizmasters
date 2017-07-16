@@ -4,10 +4,7 @@ import kz.codemasters.quizmasters.repository.interfaces.QuizRepository;
 import kz.codemasters.quizmasters.model.Quiz;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -41,11 +38,20 @@ public class QuizRepositoryImpl implements QuizRepository {
         }
     }
 
-    public boolean mergeQuiz(Quiz quiz) {
+    public boolean insertQuiz(Quiz quiz) {
+        try {
+            entityManager.persist(quiz);
+            return true;
+        } catch (PersistenceException e) {
+            return false;
+        }
+    }
+
+    public boolean updateQuiz(Quiz quiz) {
         try {
             entityManager.merge(quiz);
             return true;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             return false;
         }
     }
@@ -54,7 +60,7 @@ public class QuizRepositoryImpl implements QuizRepository {
         try {
             entityManager.remove(quiz);
             return true;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             return false;
         }
     }

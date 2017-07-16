@@ -4,10 +4,7 @@ import kz.codemasters.quizmasters.repository.interfaces.UserRepository;
 import kz.codemasters.quizmasters.model.User;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -36,7 +33,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     public User getUserByEmail(String email) {
-        if(email==null)return null;
+        if (email == null) return null;
         email = email.trim().toLowerCase();
         String queryStr = "SELECT u FROM User u WHERE u.email =:email";
         Query query = entityManager.createQuery(queryStr, User.class)
@@ -48,11 +45,20 @@ public class UserRepositoryImpl implements UserRepository {
         }
     }
 
-    public boolean mergeUser(User user) {
+    public boolean insertUser(User user) {
+        try {
+            entityManager.persist(user);
+            return true;
+        } catch (PersistenceException e) {
+            return false;
+        }
+    }
+
+    public boolean updateUser(User user) {
         try {
             entityManager.merge(user);
             return true;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             return false;
         }
     }
@@ -61,7 +67,7 @@ public class UserRepositoryImpl implements UserRepository {
         try {
             entityManager.remove(user);
             return true;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             return false;
         }
     }

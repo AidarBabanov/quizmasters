@@ -13,8 +13,6 @@
         <class>kz.codemasters.quizmasters.model.User</class>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update" />
-            <property name="hibernate.show_sql" value="false" />
-            <property name="hibernate.format_sql" value="false" />
             <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/quizmasters"/>
             <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/quizmasters"/>

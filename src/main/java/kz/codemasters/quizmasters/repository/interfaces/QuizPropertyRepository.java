@@ -14,7 +14,9 @@ public interface QuizPropertyRepository {
 
     QuizProperty getQuizPropertyByCompositeKey(int quizId, int quizPropertyTypeId);
 
-    boolean mergeQuizProperty(QuizProperty quizProperty);
+    boolean insertQuizProperty(QuizProperty quizProperty);
+
+    boolean updateQuizProperty(QuizProperty quizProperty);
 
     boolean removeQuizProperty(QuizProperty quizProperty);
 }

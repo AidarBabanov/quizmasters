@@ -12,7 +12,9 @@ public interface QuizPropertyTypeRepository {
 
     QuizPropertyType getQuizPropertyTypeById(int id);
 
-    boolean mergeQuizPropertyType(QuizPropertyType quizPropertyType);
+    boolean insertQuizPropertyType(QuizPropertyType quizPropertyType);
+
+    boolean updateQuizPropertyType(QuizPropertyType quizPropertyType);
 
     boolean removeQuizPropertyType(QuizPropertyType quizPropertyType);
 }

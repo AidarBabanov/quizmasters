@@ -6,10 +6,7 @@ import kz.codemasters.quizmasters.model.AnswerMultChoice;
 import kz.codemasters.quizmasters.model.AnswerMultChoicePK;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -45,11 +42,20 @@ public class AnswerMultChoiceRepositoryImpl implements AnswerMultChoiceRepositor
         }
     }
 
-    public boolean mergeAnswerMultChoice(AnswerMultChoice answerMultChoice) {
+    public boolean insertAnswerMultChoice(AnswerMultChoice answerMultChoice) {
+        try {
+            entityManager.persist(answerMultChoice);
+            return true;
+        } catch (PersistenceException e) {
+            return false;
+        }
+    }
+
+    public boolean updateAnswerMultChoice(AnswerMultChoice answerMultChoice) {
         try {
             entityManager.merge(answerMultChoice);
             return true;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             return false;
         }
     }
@@ -58,7 +64,7 @@ public class AnswerMultChoiceRepositoryImpl implements AnswerMultChoiceRepositor
         try {
             entityManager.remove(answerMultChoice);
             return true;
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             return false;
         }
     }
