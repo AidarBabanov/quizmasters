@@ -88,9 +88,10 @@ public class SignUpController {
     }
 
     public boolean userValidation(User user) {
-        return stringsValidator.validateEmail(user.getEmail()) &&
-                stringsValidator.validateName(user.getFirstname()) &&
-                stringsValidator.validateName(user.getLastname()) &&
-                stringsValidator.validatePassword(user.getPassword());
+        FacesContext context = FacesContext.getCurrentInstance();
+        return stringsValidator.validateEmail(user.getEmail(), context)
+                && stringsValidator.validateName(user.getFirstname(), context)
+                && stringsValidator.validateName(user.getLastname(), context)
+                && stringsValidator.validatePassword(user.getPassword(), context);
     }
 }
