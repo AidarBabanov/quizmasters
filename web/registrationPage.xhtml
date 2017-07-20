@@ -8,7 +8,7 @@
     <ui:define name="title">Registration Page</ui:define>
     <ui:define name="content">
 
-        <p:growl id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+        <p:growl id="messages" showDetail="true" autoUpdate="true" closable="true" life = "30000"/>
 
         <h:panelGroup layout="block" styleClass = "rect">
             <div class = "cont">
@@ -37,14 +37,14 @@
 
                         <h:form styleClass="f2">
                             <h1>Sign in</h1>
-                            <p:inputText label="Email" placeholder="Email" value="#{SUC
+                            <p:inputText label="Email" placeholder="Email" value="#{SIC
                             .email}" required="true" styleClass="form-control"/>
 
-                            <p:password label="Password" placeholder="Password" value="#{SUC
-                            .password1}"  required="true" styleClass="form-control"/>
+                            <p:password label="Password" placeholder="Password" value="#{SIC
+                            .password}"  required="true" styleClass="form-control"/>
 
-                            <p:commandButton actionListener="#{SUC
-                            .signUp}" label="" update="messages" value="Let me in" styleClass ="btn btn-primary"/>
+                            <p:commandButton actionListener="#{SIC
+                            .SignIn}" label="" update="messages" value="Let me in" styleClass ="btn btn-primary"/>
                             <br/>
                             <a href="">Create an account</a>
                         </h:form>

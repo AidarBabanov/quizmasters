@@ -55,10 +55,10 @@ public class StringsValidator {
 
     public boolean validatePassword(final String hex, FacesContext context) {
         pattern = Pattern.compile(PASSWORD_PATTERN);
-        if (!validate(hex)){
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong password", "Pattern is wrong"));
-            return false;
-        }
+//        if (!validate(hex)){
+//            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong password", "Pattern is wrong"));
+//            return false;
+//        }
         return true;
     }
 
@@ -71,6 +71,5 @@ public class StringsValidator {
     private boolean validate(final String hex) {
         matcher = pattern.matcher(hex);
         return matcher.matches();
-
     }
 }
