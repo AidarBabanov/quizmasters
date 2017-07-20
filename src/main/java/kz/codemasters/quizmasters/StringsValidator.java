@@ -1,5 +1,7 @@
 package kz.codemasters.quizmasters;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,20 +31,35 @@ public class StringsValidator {
 
     private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=])(?=\\S+$).{8,}$";
 
-    public boolean validateEmail(final String hex) {
+    public boolean validateEmail(final String hex, FacesContext context) {
         pattern = Pattern.compile(EMAIL_PATTERN);
-        return validate(hex);
+        if (!validate(hex)){
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong email", "Pattern is wrong"));
+            return false;
+        }
+        return true;
     }
 
-    public boolean validateName(final String hex) {
-        if(hex.trim().length()==0)return false;
+    public boolean validateName(final String hex, FacesContext context) {
+        if(hex.trim().length() == 0) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fill empty fields", ""));
+            return false;
+        }
         pattern = Pattern.compile(NAME_PATTERN);
-        return validate(hex);
+        if (!validate(hex)){
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong name", "Pattern is wrong"));
+            return false;
+        }
+        return true;
     }
 
-    public boolean validatePassword(final String hex) {
+    public boolean validatePassword(final String hex, FacesContext context) {
         pattern = Pattern.compile(PASSWORD_PATTERN);
-        return validate(hex);
+        if (!validate(hex)){
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong password", "Pattern is wrong"));
+            return false;
+        }
+        return true;
     }
 
     /**

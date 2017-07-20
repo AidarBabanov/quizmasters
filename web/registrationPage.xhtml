@@ -11,7 +11,8 @@
         <p:growl id="messages" showDetail="true" autoUpdate="true" closable="true"/>
 
         <h:panelGroup layout="block" styleClass = "rect">
-                        <h:form styleClass="cont">
+            <div class = "cont">
+                        <h:form styleClass="f1">
                             <h1>Sign up</h1>
                             <p:inputText label="Email" placeholder="Email" value="#{SUC
                             .email}" required="true" styleClass="form-control"/>
@@ -31,42 +32,30 @@
                             <p:commandButton actionListener="#{SUC
                             .signUp}" label="" update="messages" value="Submit" styleClass ="btn btn-primary"/>
                             <br/>
-                            <a class="state" href="">Sign in</a>
+                            <a href="">Sign in</a>
                         </h:form>
-        </h:panelGroup>
 
-        <h:panelGroup layout="block" styleClass = "rect2">
-                        <h:form styleClass="cont">
+                        <h:form styleClass="f2">
                             <h1>Sign in</h1>
                             <p:inputText label="Email" placeholder="Email" value="#{SUC
                             .email}" required="true" styleClass="form-control"/>
 
-                            <p:password id="pwd1" label="Password" placeholder="Password" value="#{SUC
+                            <p:password label="Password" placeholder="Password" value="#{SUC
                             .password1}"  required="true" styleClass="form-control"/>
 
                             <p:commandButton actionListener="#{SUC
                             .signUp}" label="" update="messages" value="Let me in" styleClass ="btn btn-primary"/>
                             <br/>
-                            <a class="state" href="">Create an account</a>
+                            <a href="">Create an account</a>
                         </h:form>
+                    </div>
         </h:panelGroup>
+
         <script type="text/javascript">
-            var i = 0;
-            console.log('hello');
                     $('a').click(function(event){
-                        console.log(i);
-                        if (i % 2 === 0) {
-                            $('.rect2').animate({display: "none", opacity: "toggle"}, "slow");
-                            $('.rect').animate({display: "block", opacity: "toggle"}, "slow");
-                            i++;
-                        }else {
-                            $('.rect').animate({display: "none", opacity: "toggle"}, "slow");
-                            $('.rect2').animate({display: "block", opacity: "toggle"}, "slow");
-                            i++;
-                        }
+                        $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
                         event.preventDefault();
                     });
-
         </script>
 
     </ui:define>
