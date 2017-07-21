@@ -35,6 +35,12 @@ public class SignInController {
     public void init() {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         HttpSession httpSession = (HttpSession) context.getSession(true);
+
+        //After finishing project we have to delete this part
+        User user = userRepository.getUserByEmail("aidar.babanov@nu.edu.kz");
+        httpSession.setAttribute(AppConstant.SESSION_USER, user);
+        //---------------------------------------------------
+
         if (httpSession.getAttribute(AppConstant.SESSION_USER) != null){
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect(context.getRequestContextPath()+"/mainpage.xhtml");
@@ -42,6 +48,7 @@ public class SignInController {
                 e.printStackTrace();
             }
         }
+
     }
 
     public String getEmail() {
