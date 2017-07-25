@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+>
+<h:head>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/icon.min.css'/>
+
+    <style type="text/css">
+        @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
+        body{
+            font-family: Roboto !important;
+        }
+        .mynavbar{
+
+            height:45px;
+            background: rgba(0,0,0,0.57)!important;
+            width: 100%;
+            clear: both;
+            padding-right: 10px;
+            padding-left: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+        }
+        .navs {
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+        .navs a{
+            color: white;
+        }
+        .navs a:hover{
+            color: #AEDEF1;
+        }
+        .navs a:active{
+            color: #32BDF2;
+        }
+
+        .mynavbar input {
+            width: 150px;
+        }
+        .mynavbar button{
+        }
+        .right{
+            float: right;
+        }
+        .left{
+            float: left;
+        }
+        .ui-overlaypanel{
+            background: rgba(0,0,0,0);
+            border: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;;
+        }
+        .ui-widget-overlay{
+            background: rgba(0,0,0,0.8);
+        }
+        .ui-dialog{
+            background: rgba(255,255,255,1);
+        }
+        .ui-datatable table *{
+            border: none !important;
+        }
+    </style>
+</h:head>
+<h:body>
+    <h:outputStylesheet name="css/semantic.css"/>
+
+    <div class="mynavbar">
+        <div class="profileimage">
+            <h:graphicImage id ="image" styleClass="ui tiny circular image left" value="#{resource['image/prof.png']}"/>
+            <p:overlayPanel id="imagePanel" for="image" hideEffect="fade">
+
+                <div class="ui card">
+                    <div class="image">
+                        <h:graphicImage value="#{resource['image/prof.png']}"/>
+                    </div>
+                    <div class="content">
+                        <a class="header">#{UC.user.firstname} #{UC.user.lastname}</a>
+                        <div class="meta">
+                            <span class="date">#{UC.user.email}</span>
+                        </div>
+                        <div class="description">
+                            Fortunately, good guy :)
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a>
+                            <i class="user icon"></i>
+                            22 Friends
+                        </a>
+                    </div>
+                </div>
+            </p:overlayPanel>
+        </div>
+        <div class = "navs">
+            <div class="right">
+                <span><a class = "link" href="#">My questions</a></span>
+                &nbsp;&nbsp;
+                <span><a class = "link" href="#">Settings</a></span>
+                &nbsp;&nbsp;
+                <div class="ui icon input">
+                    <p:inputText type="text" placeholder="Search..."/>
+                    <i class="inverted circular search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <p:commandButton value="Add question" styleClass="ui black basic button" onclick="PF('dlg1').show()"/>
+    <br/>
+    <br/>
+    <div class="ui container segment">
+
+        <h:form id="quizes" >
+            <p:dataTable var="quiz" value="#{QLC.quizList}" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="1,5,10">
+
+                <p:column styleClass="ui items">
+
+                    <div class="item">
+                        <div class="ui small image">
+                            <h:graphicImage id ="image" styleClass="ui tiny circular image left" value="#{resource['image/pikachu.png']}"/>
+                        </div>
+                        <div class="middle aligned content">
+                            <div class="header">
+                                #{quiz.id}
+                            </div>
+                            <div class="description">
+                                #{quiz.name}
+                            </div>
+
+                            <div class="extra">
+                                <div class="ui right floated button">
+                                    <p:commandButton value="View"/>
+                                </div>
+                                <div class="ui right floated button">
+                                    <p:commandButton value="Delete">
+                                        <p:ajax event="click" process="@(#title)" update="@(#quizes)" listener="#{MQC.deleteQuiz}" />
+                                    </p:commandButton>
+                                </div>
+                                <div class="ui right floated button">
+                                    <p:commandButton value="Edit"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+    </div>
+    <p:dialog header="Add question" widgetVar="dlg1" modal="true" styleClass="ui content">
+        <h:form styleClass="center">
+            <div class = "ui big input">
+                <p:inputText id="title" value="#{MQC.title}" placeholder="Title for quiz"/>
+            </div>
+            <p:commandButton value = "Add" onclick="PF('dlg1').hide()" styleClass="ui black basic button">
+                <p:ajax event="click" process="@(#title)" update="@(#quizes)" listener="#{MQC.addQuiz()}" />
+            </p:commandButton>
+
+            <p:commandButton value = "Cancel" onclick="PF('dlg1').hide()" styleClass="ui black basic button"/>
+        </h:form>
+    </p:dialog>
+</h:body>
+</html>
