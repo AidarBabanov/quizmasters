@@ -19,14 +19,15 @@ public class QuizRepositoryImpl implements QuizRepository {
     public List<Quiz> getAllQuizzes() {
         String queryStr = "SELECT q FROM Quiz q";
         Query query = entityManager.createQuery(queryStr, Quiz.class);
-        return query.getResultList();
+        return (List<Quiz>) query.getResultList();
     }
 
     public List<Quiz> getAllUserQuizzes(int userId) {
         String queryStr = "SELECT q FROM Quiz q WHERE q.userId = :userId";
         Query query = entityManager.createQuery(queryStr, Quiz.class)
                 .setParameter("userId", userId);
-        return query.getResultList();
+
+        return (List<Quiz>) query.getResultList();
 
     }
 
