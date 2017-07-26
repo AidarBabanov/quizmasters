@@ -43,8 +43,10 @@ public class SignInController implements Serializable{
 
     @PostConstruct
     public void init() {
+        //Have to change this part
+         userController.setUser(userRepository.getUserByEmail("aidar.babanov@gmail.com"));
+        //
         if (userController.getUser() != null) redirect();
-
     }
 
     public String getEmail() {

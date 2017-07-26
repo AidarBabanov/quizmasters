@@ -4,7 +4,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
 >
 <h:head>
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/icon.min.css'/>
@@ -114,87 +113,14 @@
             </div>
         </div>
     </div>
-
-    <ui:insert name="header" >
-        <ui:include src="/templates/header.xhtml" />
-    </ui:insert>
-
-
-
     //------------------------------------------------------------------------------------------
     <br/>
     //------------------------------------Content Of Quizes-------------------------------------
-    <p:commandButton value="Add question" styleClass="ui black basic button" onclick="PF('dlg1').show()"/>
-    <br/>
-    <br/>
-    <div class="ui container segment">
-        <h:form id="quizes" >
-            <p:dataTable var="quiz" value="#{MQC.quizRepository.getAllUserQuizzes(UC.user.id)}" rows="10"
-                         paginator="true"
-                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="1,5,10">
-
-                <p:column styleClass="ui items">
-
-                    <div class="item">
-                        <div class="ui small image">
-                            <h:graphicImage id ="image" styleClass="ui tiny circular image left" value="#{resource['image/pikachu.png']}"/>
-                        </div>
-                        <div class="middle aligned content">
-                            <div class="header">
-                                #{quiz.id}
-                            </div>
-                            <div class="description">
-                                #{quiz.name}
-                            </div>
-
-                            <div class="extra">
-                                <div class="ui right floated button">
-                                    <p:commandButton value="View"/>
-                                </div>
-                                <div class="ui right floated button">
-                                    <p:commandButton value="Delete">
-                                        <p:ajax event="click" update="@(#quizes)" listener="#{MQC.quizRepository.removeQuiz(quiz)}"/>
-                                    </p:commandButton>
-                                </div>
-                                <div class="ui right floated button">
-                                    <p:commandButton value="Edit" actionListener="#{MQC.setSelectedQuiz(quiz)}" oncomplete="PF('dlg2').show()" update="dlg2"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </p:column>
-            </p:dataTable>
-        </h:form>
-    </div>
-    //------------------------------------------------------------------------------------------
-
-
-
-    //--------------------------------------Add Quiz Alert--------------------------------------
-    <p:dialog header="Add question" widgetVar="dlg1" modal="true" styleClass="ui content" id="dlg1">
-        <h:form styleClass="center">
-            <div class = "ui big input"><p:inputText id="title" value="#{MQC.addTitle}" placeholder="Title for quiz"/></div>
-            <p:commandButton value = "Add" actionListener="#{MQC.addQuiz()}" update="@(#quizes) @(#dlg1)" oncomplete="PF('dlg1').hide()" styleClass="ui black basic button"/>
-            <p:commandButton value = "Cancel" onclick="PF('dlg1').hide()" styleClass="ui black basic button"/>
-        </h:form>
-    </p:dialog>
-    //------------------------------------------------------------------------------------------
-
-    //-------------------------------------Update Quiz Alert------------------------------------
-    <p:dialog header="Update quiz name" widgetVar="dlg2" modal="true" styleClass="ui content" id="dlg2">
-        <h:form styleClass="center">
-            <div class = "ui big input"><p:inputText id="title2" value="#{MQC.updateTitle}" placeholder = "#{MQC.selectedQuiz.getName()}" rendered="true"/></div>
-            <p:commandButton value = "Update" actionListener="#{MQC.updateQuiz}" update="@(#quizes) @(#dlg2)" oncomplete="PF('dlg2').hide()" styleClass="ui black basic button"  />
-            <p:commandButton value = "Cancel" onclick="PF('dlg2').hide()" styleClass="ui black basic button"/>
-        </h:form>
-    </p:dialog>
-    //-------------------------------------------------------------------------------------------
+    //Insert Content Here
 
 
 
 
-
-
+    //------------------------------------------Footer------------------------------------------
 </h:body>
 </html>
