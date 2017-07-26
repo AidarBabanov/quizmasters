@@ -72,58 +72,12 @@
 </h:head>
 <h:body>
     <h:outputStylesheet name="css/semantic.css"/>
-    //--------------------------------------Navigation bar--------------------------------------
-    //Create Template for Header
-    <div class="mynavbar">
-        <div class="profileimage">
-            <h:graphicImage id ="image" styleClass="ui tiny circular image left" value="#{resource['image/prof.png']}"/>
-            <p:overlayPanel id="imagePanel" for="image" hideEffect="fade">
-
-                <div class="ui card">
-                    <div class="image">
-                        <h:graphicImage value="#{resource['image/prof.png']}"/>
-                    </div>
-                    <div class="content">
-                        <a class="header">#{UC.user.firstname} #{UC.user.lastname}</a>
-                        <div class="meta">
-                            <span class="date">#{UC.user.email}</span>
-                        </div>
-                        <div class="description">
-                            Fortunately, good guy :)
-                        </div>
-                    </div>
-                    <div class="extra content">
-                        <a>
-                            <i class="user icon"></i>
-                            22 Friends
-                        </a>
-                    </div>
-                </div>
-            </p:overlayPanel>
-        </div>
-        <div class = "navs">
-            <div class="right">
-                <span><a class = "link" href="#">My questions</a></span>
-                &nbsp;&nbsp;
-                <span><a class = "link" href="#">Settings</a></span>
-                &nbsp;&nbsp;
-                <div class="ui icon input">
-                    <p:inputText type="text" placeholder="Search..."/>
-                    <i class="inverted circular search link icon"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <!--Header-->
     <ui:insert name="header" >
-        <ui:include src="/templates/header.xhtml" />
+        <ui:include src="/templates/common/header.xhtml" />
     </ui:insert>
-
-
-
-    //------------------------------------------------------------------------------------------
     <br/>
-    //------------------------------------Content Of Quizes-------------------------------------
+    <!--Content Of Quizes-->
     <p:commandButton value="Add question" styleClass="ui black basic button" onclick="PF('dlg1').show()"/>
     <br/>
     <br/>
@@ -167,34 +121,15 @@
             </p:dataTable>
         </h:form>
     </div>
-    //------------------------------------------------------------------------------------------
 
-
-
-    //--------------------------------------Add Quiz Alert--------------------------------------
-    <p:dialog header="Add question" widgetVar="dlg1" modal="true" styleClass="ui content" id="dlg1">
-        <h:form styleClass="center">
-            <div class = "ui big input"><p:inputText id="title" value="#{MQC.addTitle}" placeholder="Title for quiz"/></div>
-            <p:commandButton value = "Add" actionListener="#{MQC.addQuiz()}" update="@(#quizes) @(#dlg1)" oncomplete="PF('dlg1').hide()" styleClass="ui black basic button"/>
-            <p:commandButton value = "Cancel" onclick="PF('dlg1').hide()" styleClass="ui black basic button"/>
-        </h:form>
-    </p:dialog>
-    //------------------------------------------------------------------------------------------
-
-    //-------------------------------------Update Quiz Alert------------------------------------
-    <p:dialog header="Update quiz name" widgetVar="dlg2" modal="true" styleClass="ui content" id="dlg2">
-        <h:form styleClass="center">
-            <div class = "ui big input"><p:inputText id="title2" value="#{MQC.updateTitle}" placeholder = "#{MQC.selectedQuiz.getName()}" rendered="true"/></div>
-            <p:commandButton value = "Update" actionListener="#{MQC.updateQuiz}" update="@(#quizes) @(#dlg2)" oncomplete="PF('dlg2').hide()" styleClass="ui black basic button"  />
-            <p:commandButton value = "Cancel" onclick="PF('dlg2').hide()" styleClass="ui black basic button"/>
-        </h:form>
-    </p:dialog>
-    //-------------------------------------------------------------------------------------------
-
-
-
-
-
+    <!--Add Quiz Alert-->
+    <ui:insert name="addquiz" >
+        <ui:include src="/templates/dialogboxes/add_quiz.xhtml" />
+    </ui:insert>
+    <!--Update Quiz Alert-->
+    <ui:insert name="updatequiz" >
+        <ui:include src="/templates/dialogboxes/update_quiz.xhtml" />
+    </ui:insert>
 
 </h:body>
 </html>
