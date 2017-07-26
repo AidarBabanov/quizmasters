@@ -13,10 +13,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import java.io.Serializable;
 
 @ManagedBean(name = "SUC")
 @RequestScoped
-public class SignUpController {
+public class SignUpController implements Serializable {
     private String fname;
     private String lname;
     private String password1;

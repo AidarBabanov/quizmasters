@@ -3,9 +3,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
 >
 <h:head>
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/icon.min.css'/>
@@ -73,55 +72,18 @@
 </h:head>
 <h:body>
     <h:outputStylesheet name="css/semantic.css"/>
-
-    <div class="mynavbar">
-        <div class="profileimage">
-            <h:graphicImage id ="image" styleClass="ui tiny circular image left" value="#{resource['image/prof.png']}"/>
-            <p:overlayPanel id="imagePanel" for="image" hideEffect="fade">
-
-                <div class="ui card">
-                    <div class="image">
-                        <h:graphicImage value="#{resource['image/prof.png']}"/>
-                    </div>
-                    <div class="content">
-                        <a class="header">#{MPC.currentUser.firstname} #{MPC.currentUser.lastname}</a>
-                        <div class="meta">
-                            <span class="date">#{MPC.currentUser.email}</span>
-                        </div>
-                        <div class="description">
-                            Fortunately, good guy :)
-                        </div>
-                    </div>
-                    <div class="extra content">
-                        <a>
-                            <i class="user icon"></i>
-                            22 Friends
-                        </a>
-                    </div>
-                </div>
-            </p:overlayPanel>
-        </div>
-        <div class = "navs">
-            <div class="right">
-                <span><a class = "link" href="#">My questions</a></span>
-                &nbsp;&nbsp;
-                <span><a class = "link" href="#">Settings</a></span>
-                &nbsp;&nbsp;
-                <div class="ui icon input">
-                    <p:inputText type="text" placeholder="Search..."/>
-                    <i class="inverted circular search link icon"></i>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!--Header-->
+    <ui:insert name="header" >
+        <ui:include src="/templates/common/header.xhtml" />
+    </ui:insert>
     <br/>
+    <!--Content Of Quizes-->
     <p:commandButton value="Add question" styleClass="ui black basic button" onclick="PF('dlg1').show()"/>
     <br/>
     <br/>
     <div class="ui container segment">
-
         <h:form id="quizes" >
-            <p:dataTable var="quiz" value="#{QC.quizList}" rows="10"
+            <p:dataTable var="quiz" value="#{MQC.quizRepository.getAllUserQuizzes(UC.user.id)}" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="1,5,10">
@@ -145,30 +107,29 @@
                                     <p:commandButton value="View"/>
                                 </div>
                                 <div class="ui right floated button">
-                                    <p:commandButton value="Delete"/>
+                                    <p:commandButton value="Delete">
+                                        <p:ajax event="click" update="@(#quizes)" listener="#{MQC.quizRepository.removeQuiz(quiz)}"/>
+                                    </p:commandButton>
                                 </div>
                                 <div class="ui right floated button">
-                                    <p:commandButton value="Edit"/>
+                                    <p:commandButton value="Edit" actionListener="#{MQC.setSelectedQuiz(quiz)}" oncomplete="PF('dlg2').show()" update="dlg2"/>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </p:column>
-
             </p:dataTable>
         </h:form>
     </div>
-    <p:dialog header="Add question" widgetVar="dlg1" modal="true" styleClass="ui content">
-        <h:form styleClass="center">
-            <div class = "ui big input">
-                <p:inputText id="title" value="#{QC.tempTitle}" placeholder="Title for quiz"/>
-            </div>
-            <p:commandButton value = "Add" onclick="PF('dlg1').hide()" styleClass="ui black basic button">
-                <p:ajax event="click" process="@(#title)" update="@(#quizes)" listener="#{QC.addQuiz(MPC.currentUser.id)}" />
-            </p:commandButton>
 
-            <p:commandButton value = "Cancel" onclick="PF('dlg1').hide()" styleClass="ui black basic button"/>
-        </h:form>
-    </p:dialog>
+    <!--Add Quiz Alert-->
+    <ui:insert name="addquiz" >
+        <ui:include src="/templates/dialogboxes/add_quiz.xhtml" />
+    </ui:insert>
+    <!--Update Quiz Alert-->
+    <ui:insert name="updatequiz" >
+        <ui:include src="/templates/dialogboxes/update_quiz.xhtml" />
+    </ui:insert>
+
 </h:body>
 </html>
