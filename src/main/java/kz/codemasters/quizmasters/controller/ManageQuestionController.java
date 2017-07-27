@@ -34,4 +34,7 @@ public class ManageQuestionController {
     private ExternalContext getContext(){
         return FacesContext.getCurrentInstance().getExternalContext();
     }
+
+
+
 }
