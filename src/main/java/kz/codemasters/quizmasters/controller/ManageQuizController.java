@@ -1,5 +1,7 @@
 package kz.codemasters.quizmasters.controller;
 
+import kz.codemasters.quizmasters.AppConstant;
+import kz.codemasters.quizmasters.Pages;
 import kz.codemasters.quizmasters.model.Quiz;
 import kz.codemasters.quizmasters.repository.interfaces.QuizRepository;
 import org.primefaces.context.RequestContext;
@@ -9,7 +11,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import java.io.IOException;
 import java.util.List;
 
 @ManagedBean(name = "MQC")
@@ -19,6 +24,9 @@ public class ManageQuizController {
     private String addTitle;
     private String updateTitle;
     private Quiz selectedQuiz;
+
+    @Inject
+    private Pages pagesNavigator;
 
     @ManagedProperty("#{UC}")
     private UserController userController;
@@ -39,6 +47,28 @@ public class ManageQuizController {
         updateTitle = null;
         return quizRepository.insertQuiz(selectedQuiz);
     }
+
+    public void viewQuestions(Quiz quiz){
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        redirect(pagesNavigator.QUESTIONS_PAGE, context, "?id="+quiz.getId());
+    }
+
+    public void redirect(String page, ExternalContext externalContext, String params){
+        try {
+            externalContext.redirect(externalContext.getRequestContextPath() + "/" + page + params);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void redirect(String page, ExternalContext externalContext){
+        try {
+            externalContext.redirect(externalContext.getRequestContextPath() + "/" + page);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public Quiz getSelectedQuiz() {
         return selectedQuiz;

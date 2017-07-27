@@ -10,5 +10,4 @@ import javax.ejb.Startup;
 @Singleton
 public class AppConstant {
     public static final String SESSION_USER = "user";
-
 }
