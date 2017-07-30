@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
 >
 <h:head>
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/icon.min.css'/>
@@ -107,7 +107,11 @@
                                     <p:commandButton value="View"/>
                                 </div>
                                 <div class="ui right floated button">
-                                    <p:commandButton value="Delete" update="@(#quizes)" actionListener="#{quiz.()}"/>
+                                    <p:remoteCommand name="update" update="quizes" />
+                                    <p:commandButton value="Delete" oncomplete="update();">
+                                        <f:actionListener binding="#{MQC.setQuiz(quiz)}"/>
+                                        <f:actionListener binding="#{MQC.deleteQuiz()}"/>
+                                    </p:commandButton>
 
                                 </div>
                                 <div class="ui right floated button">

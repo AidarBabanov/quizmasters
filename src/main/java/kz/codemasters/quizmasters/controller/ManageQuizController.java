@@ -24,7 +24,7 @@ public class ManageQuizController {
     private QuizRepository quizRepository;
 
 
-    public boolean addQuiz(){
+    public boolean addQuiz() {
         Quiz quiz = new Quiz();
         quiz.setName(title);
         quiz.setUserId(userController.getUser().getId());
@@ -37,11 +37,11 @@ public class ManageQuizController {
                 quizRepository.updateQuiz(quiz);
     }
 
-    public boolean deleteQuiz(){
+    public void deleteQuiz() {
         int ucUserId = userController.getUser().getId();
         int quizUserId = quiz.getUserId();
-        if(quizUserId != ucUserId)return false;
-                return quizRepository.removeQuiz(quiz);
+        if (quizUserId != ucUserId) return;
+        quizRepository.removeQuiz(quiz);
     }
 
     public Quiz getQuiz() {

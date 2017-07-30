@@ -20,7 +20,6 @@ public class QuizListController implements Serializable {
 
     private List<Quiz> quizList;
 
-
     @EJB
     private QuizRepository quizRepository;
     @ManagedProperty("#{UC}")
