@@ -3,22 +3,20 @@ package kz.codemasters.quizmasters.controller;
 
 import kz.codemasters.quizmasters.model.Quiz;
 import kz.codemasters.quizmasters.repository.interfaces.QuizRepository;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import java.io.IOException;
 
 
 @ManagedBean(name = "MQC")
 @ViewScoped
 public class ManageQuizController {
 
-    private String addTitle;
-    private String updateTitle;
-    private Quiz selectedQuiz;
+    private Quiz quiz;
+    private String title;
+
 
     @ManagedProperty("#{UC}")
     private UserController userController;
@@ -26,56 +24,41 @@ public class ManageQuizController {
     @EJB
     private QuizRepository quizRepository;
 
-    public boolean addQuiz(){
+
+    public boolean addQuiz() {
         Quiz quiz = new Quiz();
-        quiz.setName(addTitle);
-        addTitle = null;
+        quiz.setName(title);
         quiz.setUserId(userController.getUser().getId());
         return quizRepository.insertQuiz(quiz);
+
     }
 
-    public boolean updateQuiz(){
-        selectedQuiz.setName(updateTitle);
-        updateTitle = null;
-        return quizRepository.insertQuiz(selectedQuiz);
+    public boolean renameQuiz() {
+        return quiz.getUserId() == userController.getUser().getId() &&
+                quizRepository.updateQuiz(quiz);
     }
 
-    public void viewQuestions(Quiz quiz){
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        redirect("questions.xhtml", context, "?id="+quiz.getId());
+    public void deleteQuiz() {
+        int ucUserId = userController.getUser().getId();
+        int quizUserId = quiz.getUserId();
+        if (quizUserId != ucUserId) return;
+        quizRepository.removeQuiz(quiz);
     }
 
-    public void redirect(String page, ExternalContext externalContext, String params){
-        try {
-            externalContext.redirect(externalContext.getRequestContextPath() + "/" + page + params);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public Quiz getQuiz() {
+        return quiz;
     }
 
-    public void redirect(String page, ExternalContext externalContext){
-        try {
-            externalContext.redirect(externalContext.getRequestContextPath() + "/" + page);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
     }
 
-
-    public Quiz getSelectedQuiz() {
-        return selectedQuiz;
+    public String getTitle() {
+        return title;
     }
 
-    public void setSelectedQuiz(Quiz selectedQuiz) {
-        this.selectedQuiz = selectedQuiz;
-    }
-
-    public QuizRepository getQuizRepository() {
-        return quizRepository;
-    }
-
-    public void setQuizRepository(QuizRepository quizRepository) {
-        this.quizRepository = quizRepository;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public UserController getUserController() {
@@ -85,22 +68,5 @@ public class ManageQuizController {
     public void setUserController(UserController userController) {
         this.userController = userController;
     }
-
-    public String getAddTitle() {
-        return addTitle;
-    }
-
-    public void setAddTitle(String title) {
-        this.addTitle = title;
-    }
-    public String getUpdateTitle() {
-        return updateTitle;
-    }
-
-    public void setUpdateTitle(String title) {
-        this.addTitle = updateTitle;
-    }
-
-
 
 }
