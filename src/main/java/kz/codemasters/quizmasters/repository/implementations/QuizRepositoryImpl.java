@@ -59,7 +59,7 @@ public class QuizRepositoryImpl implements QuizRepository {
 
     public boolean removeQuiz(Quiz quiz) {
         try {
-            entityManager.remove(quiz);
+            entityManager.remove(entityManager.contains(quiz) ? quiz : entityManager.merge(quiz));
             return true;
         } catch (PersistenceException e) {
             return false;

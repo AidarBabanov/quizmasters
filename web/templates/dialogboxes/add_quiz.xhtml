@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+        <ui:composition>
+            <p:dialog header="Add question" widgetVar="dlg1" modal="true" styleClass="ui content" id="dlg1">
+                <h:form styleClass="center">
+                    <div class = "ui big input"><p:inputText id="title" value="#{MQC.title}" placeholder="Title for quiz"/></div>
+                    <p:commandButton value = "Add" actionListener="#{MQC.addQuiz()}" update="@(#quizes) @(#dlg1)" oncomplete="PF('dlg1').hide()" styleClass="ui black basic button"/>
+                    <p:commandButton value = "Cancel" onclick="PF('dlg1').hide()" styleClass="ui black basic button"/>
+                </h:form>
+            </p:dialog>
+        </ui:composition>
+    </body>
+</html>

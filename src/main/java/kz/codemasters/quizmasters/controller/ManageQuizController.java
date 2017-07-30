@@ -7,13 +7,15 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 @ManagedBean(name = "MQC")
-@RequestScoped
+@ViewScoped
 public class ManageQuizController {
 
-    private int id;
+    private Quiz quiz;
     private String title;
+
 
     @ManagedProperty("#{UC}")
     private UserController userController;
@@ -21,20 +23,33 @@ public class ManageQuizController {
     @EJB
     private QuizRepository quizRepository;
 
-    public QuizRepository getQuizRepository() {
-        return quizRepository;
+
+    public boolean addQuiz(){
+        Quiz quiz = new Quiz();
+        quiz.setName(title);
+        quiz.setUserId(userController.getUser().getId());
+        return quizRepository.insertQuiz(quiz);
+
     }
 
-    public void setQuizRepository(QuizRepository quizRepository) {
-        this.quizRepository = quizRepository;
+    public boolean renameQuiz() {
+        return quiz.getUserId() == userController.getUser().getId() &&
+                quizRepository.updateQuiz(quiz);
     }
 
-    public UserController getUserController() {
-        return userController;
+    public boolean deleteQuiz(){
+        int ucUserId = userController.getUser().getId();
+        int quizUserId = quiz.getUserId();
+        if(quizUserId != ucUserId)return false;
+                return quizRepository.removeQuiz(quiz);
     }
 
-    public void setUserController(UserController userController) {
-        this.userController = userController;
+    public Quiz getQuiz() {
+        return quiz;
+    }
+
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
     }
 
     public String getTitle() {
@@ -45,31 +60,12 @@ public class ManageQuizController {
         this.title = title;
     }
 
-    public boolean addQuiz(){
-        Quiz quiz = new Quiz();
-        quiz.setName(title);
-        quiz.setUserId(userController.getUser().getId());
-        return quizRepository.insertQuiz(quiz);
-
+    public UserController getUserController() {
+        return userController;
     }
 
-    public boolean editQuiz() {
-        Quiz quiz = quizRepository.getQuizById(id);
-        return quiz.getUserId() == userController.getUser().getId() &&
-                quizRepository.updateQuiz(quiz);
+    public void setUserController(UserController userController) {
+        this.userController = userController;
     }
 
-    public boolean deleteQuiz(){
-        Quiz quiz = quizRepository.getQuizById(id);
-        return quiz.getUserId() == userController.getUser().getId() &&
-                quizRepository.removeQuiz(quiz);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 }

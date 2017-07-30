@@ -20,6 +20,7 @@ public class QuizListController implements Serializable {
 
     private List<Quiz> quizList;
 
+
     @EJB
     private QuizRepository quizRepository;
     @ManagedProperty("#{UC}")
@@ -37,20 +38,10 @@ public class QuizListController implements Serializable {
         } else {
             try {
                 quizList = quizRepository.getAllUserQuizzes(userController.getUser().getId());
-                System.out.println(userController.getUser().getId());
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
         }
-    }
-
-
-    public UserController getUserController() {
-        return userController;
-    }
-
-    public void setUserController(UserController userController) {
-        this.userController = userController;
     }
 
     public List<Quiz> getQuizList() {
@@ -60,4 +51,13 @@ public class QuizListController implements Serializable {
     public void setQuizList(List<Quiz> quizList) {
         this.quizList = quizList;
     }
+
+    public UserController getUserController() {
+        return userController;
+    }
+
+    public void setUserController(UserController userController) {
+        this.userController = userController;
+    }
+
 }

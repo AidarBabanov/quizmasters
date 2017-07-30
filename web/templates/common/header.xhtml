@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<body>
+<ui:composition>
+<div class="mynavbar">
+    <div class="profileimage">
+        <h:graphicImage id ="image" styleClass="ui tiny circular image left" value="#{resource['image/prof.png']}"/>
+        <p:overlayPanel id="imagePanel" for="image" hideEffect="fade">
+
+            <div class="ui card">
+                <div class="image">
+                    <h:graphicImage value="#{resource['image/prof.png']}"/>
+                </div>
+                <div class="content">
+                    <a class="header">#{UC.user.firstname} #{UC.user.lastname}</a>
+                    <div class="meta">
+                        <span class="date">#{UC.user.email}</span>
+                    </div>
+                    <div class="description">
+                        Fortunately, good guy :)
+                    </div>
+                </div>
+                <div class="extra content">
+                    <a>
+                        <i class="user icon"></i>
+                        22 Friends
+                    </a>
+                </div>
+            </div>
+        </p:overlayPanel>
+    </div>
+    <div class = "navs">
+        <div class="right">
+            <span><a class = "link" href="#">My questions</a></span>
+            &nbsp;&nbsp;
+            <span><a class = "link" href="#">Settings</a></span>
+            &nbsp;&nbsp;
+            <div class="ui icon input">
+                <p:inputText type="text" placeholder="Search..."/>
+                <i class="inverted circular search link icon"></i>
+            </div>
+        </div>
+    </div>
+</div>
+</ui:composition>
+</body>
+</html>
