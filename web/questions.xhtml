@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
 >
 <h:head>
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/icon.min.css'/>
@@ -77,59 +77,18 @@
         <ui:include src="/templates/common/header.xhtml" />
     </ui:insert>
     <br/>
-    <!--Content Of Quizes-->
+    <!--Content Of Questions-->
     <p:commandButton value="Add question" styleClass="ui black basic button" onclick="PF('dlg1').show()"/>
     <br/>
+
+    #{MQTC.quizID}
+
     <br/>
-    <div class="ui container segment">
-        <h:form id="quizes" >
-            <p:dataTable var="quiz" value="#{QLC.quizList}" rows="10"
-                         paginator="true"
-                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="1,5,10">
-
-                <p:column styleClass="ui items">
-
-                    <div class="item">
-                        <div class="ui small image">
-                            <h:graphicImage id ="image" styleClass="ui tiny circular image left" value="#{resource['image/pikachu.png']}"/>
-                        </div>
-                        <div class="middle aligned content">
-                            <div class="header">
-                                #{quiz.id}
-                            </div>
-                            <div class="description">
-                                #{quiz.name}
-                            </div>
-
-                            <div class="extra">
-                                <div class="ui right floated button">
-                                    <p:commandButton value="View" actionListener="#{MQC.viewQuestions(quiz)}"/>
-                                </div>
-                                <div class="ui right floated button">
-                                    <p:remoteCommand name="update" update="quizes" />
-                                    <p:commandButton value="Delete" oncomplete="update();">
-                                        <f:actionListener binding="#{MQC.setQuiz(quiz)}"/>
-                                        <f:actionListener binding="#{MQC.deleteQuiz()}"/>
-                                    </p:commandButton>
-
-                                </div>
-                                <div class="ui right floated button">
-                                    <p:commandButton value="Edit" actionListener="#{MQC.setQuiz(quiz)}" oncomplete="PF('dlg2').show()" update="dlg2"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </p:column>
-            </p:dataTable>
-        </h:form>
-    </div>
-
-    <!--Add Quiz Alert-->
+    <!--Add Question Alert-->
     <ui:insert name="addquiz" >
         <ui:include src="/templates/dialogboxes/add_quiz.xhtml" />
     </ui:insert>
-    <!--Update Quiz Alert-->
+    <!--Update Question Alert-->
     <ui:insert name="updatequiz" >
         <ui:include src="/templates/dialogboxes/update_quiz.xhtml" />
     </ui:insert>
