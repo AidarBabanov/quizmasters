@@ -8,6 +8,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import java.io.IOException;
 
 
 @ManagedBean(name = "MQC")
@@ -43,6 +46,17 @@ public class ManageQuizController {
         int quizUserId = quiz.getUserId();
         if (quizUserId != ucUserId) return;
         quizRepository.removeQuiz(quiz);
+    }
+
+    public void viewQuestions(){
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        try {
+            FacesContext.getCurrentInstance()
+                    .getExternalContext()
+                    .redirect(context.getRequestContextPath() + "/questions.xhtml?id="+quiz.getId());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public Quiz getQuiz() {
