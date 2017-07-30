@@ -14,8 +14,7 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name = "MQTC")
 @ViewScoped
 public class ManageQuestionController {
-    int quizID;
-
+    private int quizID;
 
     public int getQuizID() {
         return quizID;
@@ -29,7 +28,6 @@ public class ManageQuestionController {
     private void init(){
         quizID = Integer.parseInt(getContext().getRequestParameterMap().get("id"));
     }
-
 
     private ExternalContext getContext(){
         return FacesContext.getCurrentInstance().getExternalContext();

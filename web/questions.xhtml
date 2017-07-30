@@ -2,9 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
 >
 <h:head>
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/components/icon.min.css'/>
@@ -83,14 +84,75 @@
 
     #{MQTC.quizID}
 
+    <div class="ui container segment">
+        <h:form id="quizes" >
+            <p:dataTable var="question" value="#{}" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="1,5,10">
+
+                <p:column styleClass="ui items">
+
+                    <div class="item">
+                        <p:panel id="toggleable" header="Toggleable" toggleable="true" closable="true" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
+
+                            <div class="ui tiny image">
+                                <h:graphicImage id ="image" styleClass="ui tiny circular image left" value="#{resource['image/pikachu.png']}"/>
+                            </div>
+                            <div class="middle aligned content">
+                                <div class="header">
+                                    #{question.id}
+                                </div>
+                                <div class="description">
+                                    #{question.text}
+                                </div>
+                                <div class="description">
+                                    #{question.answer1}
+                                </div>
+                                <div class="description">
+                                    #{question.answer2}
+                                </div>
+                                <div class="description">
+                                    #{question.answer3}
+                                </div>
+                                <div class="description">
+                                    #{question.answer4}
+                                </div>
+
+                                <div class="extra">
+                                    <div class="ui right floated button">
+                                        <p:remoteCommand name="update" update="quizes" />
+                                        <p:commandButton value="Delete" oncomplete="update();">
+
+                                        </p:commandButton>
+                                    </div>
+
+                                    <div class="ui right floated button">
+                                        <p:commandButton value="Edit" actionListener="#{}" oncomplete="PF('dlg2').show()" update="dlg2"/>
+                                    </div>
+                                </div>
+                            </div>
+                            </p:panel>
+                        </div>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </div>
+
+
+
+
+
+
+
     <br/>
     <!--Add Question Alert-->
     <ui:insert name="addquiz" >
-        <ui:include src="/templates/dialogboxes/add_quiz.xhtml" />
+        <ui:include src="/templates/dialogboxes/add_question.xhtml" />
     </ui:insert>
     <!--Update Question Alert-->
     <ui:insert name="updatequiz" >
-        <ui:include src="/templates/dialogboxes/update_quiz.xhtml" />
+        <ui:include src="/templates/dialogboxes/update_question.xhtml" />
     </ui:insert>
 
 </h:body>
