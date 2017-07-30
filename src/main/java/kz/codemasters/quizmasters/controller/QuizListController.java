@@ -44,6 +44,13 @@ public class QuizListController implements Serializable {
         }
     }
 
+    public List<Quiz> getQuizList() {
+        return quizList;
+    }
+
+    public void setQuizList(List<Quiz> quizList) {
+        this.quizList = quizList;
+    }
 
     public UserController getUserController() {
         return userController;
@@ -53,11 +60,4 @@ public class QuizListController implements Serializable {
         this.userController = userController;
     }
 
-    public List<Quiz> getQuizList() {
-        return quizList;
-    }
-
-    public void setQuizList(List<Quiz> quizList) {
-        this.quizList = quizList;
-    }
 }

@@ -3,20 +3,18 @@ package kz.codemasters.quizmasters.repository.implementations;
 import kz.codemasters.quizmasters.repository.interfaces.QuestionRepository;
 import kz.codemasters.quizmasters.model.Question;
 
+import javax.ejb.Stateless;
 import javax.persistence.*;
 import java.util.List;
 
 /**
  * Created by aidar on 7/6/17.
  */
+@Stateless
 public class QuestionRepositoryImpl implements QuestionRepository {
 
     @PersistenceContext(name = "QuizMastersPU")
     private EntityManager entityManager;
-
-    public QuestionRepositoryImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
 
     public List<Question> getAllQuestions() {
         String queryStr = "SELECT q FROM Question q";

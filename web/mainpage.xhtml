@@ -83,7 +83,7 @@
     <br/>
     <div class="ui container segment">
         <h:form id="quizes" >
-            <p:dataTable var="quiz" value="#{MQC.quizRepository.getAllUserQuizzes(UC.user.id)}" rows="10"
+            <p:dataTable var="quiz" value="#{QLC.quizList}" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="1,5,10">
@@ -107,12 +107,11 @@
                                     <p:commandButton value="View"/>
                                 </div>
                                 <div class="ui right floated button">
-                                    <p:commandButton value="Delete">
-                                        <p:ajax event="click" update="@(#quizes)" listener="#{MQC.quizRepository.removeQuiz(quiz)}"/>
-                                    </p:commandButton>
+                                    <p:commandButton value="Delete" update="@(#quizes)" actionListener="#{quiz.()}"/>
+
                                 </div>
                                 <div class="ui right floated button">
-                                    <p:commandButton value="Edit" actionListener="#{MQC.setSelectedQuiz(quiz)}" oncomplete="PF('dlg2').show()" update="dlg2"/>
+                                    <p:commandButton value="Edit" actionListener="#{MQC.setQuiz(quiz)}" oncomplete="PF('dlg2').show()" update="dlg2"/>
                                 </div>
                             </div>
                         </div>

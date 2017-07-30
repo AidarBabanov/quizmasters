@@ -11,8 +11,8 @@
         <ui:composition>
             <p:dialog header="Update quiz name" widgetVar="dlg2" modal="true" styleClass="ui content" id="dlg2">
                 <h:form styleClass="center">
-                    <div class = "ui big input"><p:inputText id="title2" value="#{MQC.updateTitle}" placeholder = "#{MQC.selectedQuiz.getName()}" rendered="true"/></div>
-                    <p:commandButton value = "Update" actionListener="#{MQC.updateQuiz}" update="@(#quizes) @(#dlg2)" oncomplete="PF('dlg2').hide()" styleClass="ui black basic button"  />
+                    <div class = "ui big input"><p:inputText id="title2" value="#{MQC.quiz.name}" placeholder = "#{MQC.quiz.name}" rendered="true"/></div>
+                    <p:commandButton value = "Update" actionListener="#{MQC.renameQuiz}" update="@(#quizes) @(#dlg2)" oncomplete="PF('dlg2').hide()" styleClass="ui black basic button"  />
                     <p:commandButton value = "Cancel" onclick="PF('dlg2').hide()" styleClass="ui black basic button"/>
                 </h:form>
             </p:dialog>

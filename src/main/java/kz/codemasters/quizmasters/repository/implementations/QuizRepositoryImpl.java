@@ -50,12 +50,7 @@ public class QuizRepositoryImpl implements QuizRepository {
 
     public boolean updateQuiz(Quiz quiz) {
         try {
-            String queryStr = "update Quiz set name ="+quiz.getName()+" where userId = "+quiz.getUserId()+"and id = "+quiz.getId();
-            Query query = entityManager.createQuery(queryStr, Quiz.class);
-
-
             entityManager.merge(quiz);
-
             return true;
         } catch (PersistenceException e) {
             return false;

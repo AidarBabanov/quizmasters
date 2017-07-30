@@ -10,7 +10,7 @@
         <ui:composition>
             <p:dialog header="Add question" widgetVar="dlg1" modal="true" styleClass="ui content" id="dlg1">
                 <h:form styleClass="center">
-                    <div class = "ui big input"><p:inputText id="title" value="#{MQC.addTitle}" placeholder="Title for quiz"/></div>
+                    <div class = "ui big input"><p:inputText id="title" value="#{MQC.title}" placeholder="Title for quiz"/></div>
                     <p:commandButton value = "Add" actionListener="#{MQC.addQuiz()}" update="@(#quizes) @(#dlg1)" oncomplete="PF('dlg1').hide()" styleClass="ui black basic button"/>
                     <p:commandButton value = "Cancel" onclick="PF('dlg1').hide()" styleClass="ui black basic button"/>
                 </h:form>
