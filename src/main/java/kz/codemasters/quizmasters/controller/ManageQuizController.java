@@ -28,17 +28,16 @@ public class ManageQuizController {
     private QuizRepository quizRepository;
 
 
-    public boolean addQuiz() {
+    public void addQuiz() {
         Quiz quiz = new Quiz();
         quiz.setName(title);
         quiz.setUserId(userController.getUser().getId());
-        return quizRepository.insertQuiz(quiz);
+        quizRepository.insertQuiz(quiz);
 
     }
 
-    public boolean renameQuiz() {
-        return quiz.getUserId() == userController.getUser().getId() &&
-                quizRepository.updateQuiz(quiz);
+    public void renameQuiz() {
+        if (quiz.getUserId() == userController.getUser().getId()) quizRepository.updateQuiz(quiz);
     }
 
     public void deleteQuiz() {
@@ -48,12 +47,12 @@ public class ManageQuizController {
         quizRepository.removeQuiz(quiz);
     }
 
-    public void viewQuestions(){
+    public void viewQuiz() {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         try {
             FacesContext.getCurrentInstance()
                     .getExternalContext()
-                    .redirect(context.getRequestContextPath() + "/questions.xhtml?id="+quiz.getId());
+                    .redirect(context.getRequestContextPath() + "/questions.xhtml?id=" + quiz.getId());
         } catch (IOException e) {
             e.printStackTrace();
         }

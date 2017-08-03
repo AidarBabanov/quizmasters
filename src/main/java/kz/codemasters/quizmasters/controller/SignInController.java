@@ -52,15 +52,19 @@ public class SignInController implements Serializable{
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
+
     public boolean SignIn() {
         if (!stringsValidator.validateEmail(email, FacesContext.getCurrentInstance())) return false;
         User user = userRepository.getUserByEmail(email);
@@ -74,7 +78,7 @@ public class SignInController implements Serializable{
     private void redirect() {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect(context.getRequestContextPath() + "/mainpage.xhtml");
+            context.redirect(context.getRequestContextPath() + "/mainpage.xhtml");
         } catch (IOException e) {
             e.printStackTrace();
         }

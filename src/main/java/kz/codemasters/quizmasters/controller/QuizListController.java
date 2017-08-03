@@ -30,7 +30,7 @@ public class QuizListController implements Serializable {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         if (userController.getUser() == null) {
             try {
-                FacesContext.getCurrentInstance().getExternalContext().redirect(context.getRequestContextPath() + "/registrationPage.xhtml");
+                context.redirect(context.getRequestContextPath() + "/registrationPage.xhtml");
             } catch (IOException e) {
                 e.printStackTrace();
             }

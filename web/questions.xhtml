@@ -86,7 +86,7 @@
 
     <div class="ui container segment">
         <h:form id="quizes" >
-            <p:dataTable var="question" value="#{}" rows="10"
+            <p:dataTable var="question" value="#{QtLC.questionList}" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="1,5,10">
@@ -101,22 +101,10 @@
                             </div>
                             <div class="middle aligned content">
                                 <div class="header">
-                                    #{question.id}
+                                    #{question.question.id}
                                 </div>
                                 <div class="description">
-                                    #{question.text}
-                                </div>
-                                <div class="description">
-                                    #{question.answer1}
-                                </div>
-                                <div class="description">
-                                    #{question.answer2}
-                                </div>
-                                <div class="description">
-                                    #{question.answer3}
-                                </div>
-                                <div class="description">
-                                    #{question.answer4}
+                                    #{question.question.text}
                                 </div>
 
                                 <div class="extra">
